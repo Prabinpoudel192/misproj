@@ -1,3 +1,13 @@
+<?php
+$con=new mysqli("localhost","root","","mis");
+if($con->connect_error){
+    die("No connection.");
+}else{
+    $sql="select *from uploads";
+    $ra=$con->query($sql);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +23,33 @@
         </div></a></li>
         <li><a href="upload.php"><div style="height:35px; width:40px; border:2px solid green; margin:-20px 0px 20px 20px; background-image:url('images/upload.jpg'); background-size:cover;">
         </div></a></li>
-    </ul>
-    </div>
-    <div id="pra11">
-        <div id="pra12"></div>
-        <div id="pra13">
-            <h3 style="text-align:center;">Ball Pen</h4>
-            <h5 style="text-style:Bold; margin:10px;">
-                Price:Rs.100<br>
-                Status:Available<br>
+    </ul></div>
+    <?php
+    while($row=$ra->fetch_assoc()){
+     $pname=$row['pname'];
+     $pprice=$row['pprice'];
+     $pdes=$row['pdes'];
+     $fname=$row['fname'];
+    echo "<div id='pra11'>
+        <div style='height:300px;
+    width:100%;
+    box-sizing:border-box;
+    border:5px solid purple;
+    background-image:url(\"$fname\");
+    background-size:100%;
+    background-repeat:no-repeat;
+    border-radius:15px;'></div>
+        <div id='pra13'>
+            <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
+            <h5 style='font-weight:Bold; margin:10px;'>
+               Price:".$pprice."<br>
+               Description:".$pdes."<br>
 
-            </h6>
+            </h5>
         </div>
 
-    </div>
+    </div>";
+    }
+    ?>
 </body>
 </html>

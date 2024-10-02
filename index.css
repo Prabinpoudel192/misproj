@@ -105,25 +105,16 @@ body{
     margin:10px;
     position:relative;
     float:left;
-}
-#pra12{
-    height:300px;
-    width:100%;
-    padding:5px;
-    box-sizing:border-box;
-    background-image: url("images/pen.jpg");
-    background-size:cover;
-    border-radius:15px;
-
+    border:5px solid purple;
 }
 #pra13{
     margin:0px;
     padding:0px;
     height:100px;
-    width:100%;
+    width:auto;
     background-color:white;
     border-radius:15px;
-    border:2px solid black;
+    border:5px solid purple;
 }
 
 
