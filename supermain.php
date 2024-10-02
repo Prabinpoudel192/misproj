@@ -14,14 +14,14 @@ if($con->connect_error){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Admin Main</title>
+    <title>Super Main</title>
 </head>
 <body>
     <div id="pra6">
         <ul>
-    <li><a href="index.php"><div style="height:35px; width:40px; border:2px solid green; margin:-20px 0px 20px 20px; background-image:url('images/logout.png'); background-size:cover;">
+    <li><a href="index.php"><div style="height:35px; width:40px; border:2px solid green; border-radius:50px; margin:-20px 0px 20px 20px; background-image:url('images/logout.png'); background-size:cover;">
         </div></a></li>
-        <li><a href="upload.php"><div style="height:35px; width:40px; border:2px solid green; margin:-20px 0px 20px 20px; background-image:url('images/upload.jpg'); background-size:cover;">
+        <li><a href="upload.php"><div style="height:35px; width:40px; border:2px solid green; border-radius:50px; margin:-20px 0px 20px 20px; background-image:url('images/upload.jpg'); background-size:cover;">
         </div></a></li>
     </ul></div>
     <?php
@@ -36,7 +36,7 @@ if($con->connect_error){
     box-sizing:border-box;
     border:5px solid purple;
     background-image:url(\"$fname\");
-    background-size:100%;
+    background-size:cover;
     background-repeat:no-repeat;
     border-radius:15px;'></div>
         <div id='pra13'>

@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
+<button id="pra14" onclick="home()"></button>
     <div id="pra7">
         <form action="" method="post" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="name" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br>
