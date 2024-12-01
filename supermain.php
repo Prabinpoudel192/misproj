@@ -27,6 +27,7 @@ if($con->connect_error){
     </ul></div>
     <?php
     while($row=$ra->fetch_assoc()){
+     $pid=$row['id'];
      $pname=$row['pname'];
      $pprice=$row['pprice'];
      $pdes=$row['pdes'];
@@ -52,12 +53,14 @@ if($con->connect_error){
                <hr>
                Total-Amount:".$total."<br>
                Description:".$pdes."<br>
-
+                 
             </h5>
+            <form action='esewa.php?pid=$pid;' method='POST'>
+
+            <input type='submit'  value='Pay Rs:$total Via esewa' style='height:50px;width:auto;border-radius:30px;
+             background-color:yellow;color:red; font-weight:bold; margin:10px 50px 10px 100px;'>
+            </form>
             </div>
-             <button onclick='esewa()' style='height:50px;width:auto;border-radius:30px;
-             background-color:yellow;color:red; font-weight:bold; margin:10px 50px 10px 100px;'>Pay Rs:$total Via esewa</button>
-    
     </div>";
     }
     ?>

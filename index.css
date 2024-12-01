@@ -127,10 +127,11 @@ body{
     background-size:cover;
 }
 #pra15{
-    height:400px;
-    width:300px;
+    height:auto;
+    width:200px;
     margin:100px 0px 0px 400px;
-    padding:50px;
+    padding:20px;
+    background-color:black;
     border:5px solid black;
 }
 #pra15 form{
@@ -138,5 +139,10 @@ body{
     font-weight:bold;
     border-radius:30px;
     text-align:center;
+    background-color:black;
 }
-
+#pra15 form label{
+    font-weight:bold;
+    font-size:25px;
+    color:white;
+}
