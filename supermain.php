@@ -14,6 +14,7 @@ if($con->connect_error){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
     <title>Super Main</title>
 </head>
 <body>
@@ -30,8 +31,11 @@ if($con->connect_error){
      $pprice=$row['pprice'];
      $pdes=$row['pdes'];
      $fname=$row['fname'];
+     $tax=$row['tax'];
+     $sercha=$row['serchar'];
+     $total=$pprice+$tax+$sercha;
     echo "<div id='pra11'>
-        <div style='height:300px;
+        <div style='height:320px;
     width:100%;
     box-sizing:border-box;
     border:5px solid purple;
@@ -43,11 +47,17 @@ if($con->connect_error){
             <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
             <h5 style='font-weight:Bold; margin:10px;'>
                Price:".$pprice."<br>
+               Service-Charge:".$sercha."<br> 
+               Taxable-Amount:".$tax."<br>
+               <hr>
+               Total-Amount:".$total."<br>
                Description:".$pdes."<br>
 
             </h5>
-        </div>
-
+            </div>
+             <button onclick='esewa()' style='height:50px;width:auto;border-radius:30px;
+             background-color:yellow;color:red; font-weight:bold; margin:10px 50px 10px 100px;'>Pay Rs:$total Via esewa</button>
+    
     </div>";
     }
     ?>

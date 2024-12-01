@@ -22,3 +22,6 @@ function admin(){
 function home(){
     window.location.href="supermain.php";
 }
+function esewa(){
+    window.location.href="esewa.php";
+}
