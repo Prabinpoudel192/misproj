@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.4-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <script defer src="index.js"></script>
+    
     <title>Mis project</title>
 </head>
-<body>
-    <div id="praa">
-        <input type="button" id="pra" value="Login" onclick="login()">
-        <input type="button" id="pra2" value="signup" onclick="signup()">
-        <input type="button" id="pra8" value="admin" onclick="admin()">
-        <input type="search" id="pra3" Placeholder="Search" >
+<body >
+    <style>
+    .newbtnstyle{
+        height:50px !important;
+        width:100px !important;
+        margin:10px !important;
+        text-align:center !important;
+        font-size:20px !important;
+        font-weight: bold !important;
+        border-radius:30px !important;
+        
+    }
+    .searchstyle{
+        height:40px !important;
+        width:300px !important;
+        padding:10px !important;
+        font-weight:bold !important;
+        font-size:30px !important;
+        border-radius:15px !important;
+        text-align:center !important;
+        margin-right:10px !important;
+        margin-top:20px !important;
+        float:right !important; 
+    }
+
+
+    </style>
+    <div class="text-danger bg-info">
+        <input type="button" class="btn btn-danger newbtnstyle" value="Login" onclick="login()">
+        <input type="button" class="btn btn-primary newbtnstyle" value="signup" onclick="signup()">
+        <input type="button" class="btn btn-light newbtnstyle" value="admin" onclick="admin()">
+        <input type="search" class="searchstyle" Placeholder="Search" >
 </div>
 <div id="pra4">
     <form action="" method="post">

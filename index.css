@@ -1,9 +1,8 @@
 body{
+    z-index:0;
     margin:0px;
     padding:0px;
-    background-image: url("images/background.jpeg");
-    background-size:cover;
-    background-repeat:no-repeat;
+    background-color: beige;
 }
 #praa{
     height:80px;
@@ -70,12 +69,12 @@ body{
 
     }
 #pra6{
-    height:50px;
+    height:70px;
     width:100%;
+    margin:-50px 0px 0px 0px;
     background-color:black;
     border:2px solid black;
-    margin:0px;
-    padding:0px;
+    position:fixed;
     color:white;
     font-size:25px;
 
@@ -116,15 +115,15 @@ body{
     border-radius:15px;
     border:5px solid purple;
 }
-#pra14{
-    margin:-100px 0px 0px 10px;
-    height:50px;
-    width:50px;
-    position:absolute;
-    border:2px solid black;
-    border-radius:50px;
-    background-image:url("images/images.jpeg");
-    background-size:cover;
+.pra14{
+    margin:-100px 0px 0px 10px !important;
+    height:50px !important;
+    width:50px !important;
+    position:absolute !important;
+    border:2px solid black !important;
+    border-radius:50px !important;
+    background-image:url("images/images.jpeg") !important;
+    background-size:cover !important;
 }
 #pra15{
     height:auto;
