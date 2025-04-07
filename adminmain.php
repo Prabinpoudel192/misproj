@@ -27,20 +27,21 @@ if($con->connect_error){
         </div></a></li>
     </ul></div>
     <?php
+      echo "<div class='container bg-dark bg-gradient' style='width:900px; z-index:1; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>"; 
     while($row=$ra->fetch_assoc()){
      $pname=$row['pname'];
      $pprice=$row['pprice'];
      $pdes=$row['pdes'];
      $fname=$row['fname'];
-   echo "<div class='container bg-dark bg-gradient' style='height:500px; width:550px;'"; 
+ echo "<div style='height:auto; width:auto; background-color:#fff;z-index:1; position:relative; margin-top:100px;'>";
    //display components starts here
-   echo "<div class='container-lg' style='margin:10px 0px 0px 0px;'>
+   echo "<div class='container-lg' style='margin-top:30px; margin-bottom:20px; background-color:#000;border-radius:25px;'>
    <div class='container-fluid row' style='
-   z-index=1;
+   z-index:1;
    position:relative; 
    margin:5px;
    border-radius:20px; 
-   height:300px;
+   height:500px;
    width:auto;
 box-sizing:border-box;
 border:5px solid purple;
@@ -48,7 +49,7 @@ background-image:url(\"$fname\");
 background-size:100%;
 background-repeat:no-repeat;
 border-radius:15px;'></div>
-   <div class='container-md' id='pra13' style='z-index=1;position:relative; margin:0px; border-radius:20px; height:180px;width:auto; '>
+   <div class='container-md' id='pra13' style='z-index:1;position:relative; margin:0px; border-radius:20px; height:180px;width:auto; '>
        <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
        <h5 style='font-weight:Bold; margin:10px;'>
           Price:".$pprice."<br>
@@ -57,10 +58,10 @@ border-radius:15px;'></div>
        </h5>
    </div>
 
-</div><br><br>";
+</div></div>";
 //display components ends here
-    echo "</div>";
     }
+    echo "</div>";
     ?>
     <script src="bootstrap-5.3.4-dist/js/bootstrap.min.js"></script>
 </body>

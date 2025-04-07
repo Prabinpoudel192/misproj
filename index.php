@@ -6,11 +6,18 @@
     <link rel="stylesheet" href="bootstrap-5.3.4-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <script defer src="index.js"></script>
+    <script>
+document.addEventListener("mousemove", function () {
+    document.getElementById("disp").style.display = "block";
+});
+</script>
+
     
-    <title>Mis project</title>
+    <title>BUYMART MANAGEMENT SYSTEM</title>
 </head>
 <body >
     <style>
+      
     .newbtnstyle{
         height:50px !important;
         width:100px !important;
@@ -36,12 +43,13 @@
 
 
     </style>
-    <div class="text-danger bg-info">
+    <div class="text-danger bg-info" style="display:none;" id="disp">
         <input type="button" class="btn btn-danger newbtnstyle" value="Login" onclick="login()">
         <input type="button" class="btn btn-primary newbtnstyle" value="signup" onclick="signup()">
         <input type="button" class="btn btn-light newbtnstyle" value="admin" onclick="admin()">
         <input type="search" class="searchstyle" Placeholder="Search" >
 </div>
+
 <div id="pra4">
     <form action="" method="post">
         <input type="text" placeholder="username" name="uname"><br><br>
