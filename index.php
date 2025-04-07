@@ -9,6 +9,10 @@
     <script>
 document.addEventListener("mousemove", function () {
     document.getElementById("disp").style.display = "block";
+    setTimeout(()=>{
+        document.getElementById("disp").style.display="none";
+       
+    },8000);
 });
 </script>
 
