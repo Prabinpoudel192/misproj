@@ -25,3 +25,6 @@ function home(){
 function esewa(pid){
  window.location.href="esewa.php?pid="+ pid;
  }
+ function Search(){
+    alert("The search option was clicked");
+ }

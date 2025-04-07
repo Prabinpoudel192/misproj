@@ -49,8 +49,8 @@ background-image:url(\"$fname\");
 background-size:100%;
 background-repeat:no-repeat;
 border-radius:15px;'></div>
-   <div class='container-md' id='pra13' style='z-index:1;position:relative; margin:0px; border-radius:20px; height:180px;width:auto; '>
-       <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
+   <div class='container-md' id='pra13' style='z-index:1;position:relative; margin:0px; border-radius:20px; height:180px;width:auto; '>  
+   <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
        <h5 style='font-weight:Bold; margin:10px;'>
           Price:".$pprice."<br>
           Description:".$pdes."<br>

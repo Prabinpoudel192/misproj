@@ -24,8 +24,42 @@ if($con->connect_error){
         <li><a href="index.php"><div style="position:relative; margin:5px 10px 100px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/logout.png'); background-size:cover;">
         </div></a></li>
         <li><a href="upload.php"><div style="position:relative; margin:5px 10px 10px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/upload.jpg'); background-size:cover;">
-        </div></a></li>
+        </div></a>
+        <li>
+    <form action="" method="POST">
+   <div style="display: flex; align-items: center; margin:10px 0px; background-color:#fff;"><div><input type="text" id="sertext" onKeyup="Search()" 
+    placeholder="Search here"
+    style="height:50px; width:400px; text-align:center; padding:20px; position:relative;
+      background-color:#fff;"></div>
+     <a href="javascript:void(0);" onclick="Search()"><div style="height:50px; width:50px; background-image:url('images/searchicon.png'); background-size:cover; background-position:center;"></div>
+     
+</div>
+    </form>    
+    
+    </li>
+    </li>
     </ul></div>
+    <div
+    style="
+    margin:65px 0px 0px 1515px;
+    height:100vh;
+    width:630px;
+    background-color:#faf;
+    border:2px solid black;
+    z-index:2;
+    position:fixed;"
+    ></div>
+    <div
+    style="
+    margin:65px 0px 0px 0px;
+    height:100vh;
+    width:620px;
+    background-color:#faf;
+    border:2px solid black;
+    z-index:2;
+    position:fixed;"
+    ></div>
+   
     <?php
      echo "<div class='container bg-dark bg-gradient' style='width:900px; z-index:0; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
     while($row=$ra->fetch_assoc()){
@@ -75,8 +109,11 @@ border-radius:15px;'></div>'
 </div></div>";
 //display components ends here
     }
+    echo "<input type='button' class='btn btn-danger newbtnstyle' value='Refresh' onClick='home()'
+    style='margin:30px 0px 10px 350px;'>";
     echo "</div>";
-    ?>
+?>
+<script defer src="index.js"></script>
 </body>
 </html>
 /*

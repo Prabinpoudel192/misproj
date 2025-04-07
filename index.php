@@ -51,7 +51,7 @@ document.addEventListener("mousemove", function () {
         <input type="button" class="btn btn-danger newbtnstyle" value="Login" onclick="login()">
         <input type="button" class="btn btn-primary newbtnstyle" value="signup" onclick="signup()">
         <input type="button" class="btn btn-light newbtnstyle" value="admin" onclick="admin()">
-        <input type="search" class="searchstyle" Placeholder="Search" >
+        
 </div>
 
 <div id="pra4">
