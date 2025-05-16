@@ -21,44 +21,41 @@ if($con->connect_error){
 <body>
     <div id="pra6" style="z-index:2; margin:-5px 0px 10px 0px;">
         <ul>
-        <li><a href="index.php"><div style="position:relative; margin:5px 10px 100px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/logout.png'); background-size:cover;">
+        <li><a href="index.php"><div id="pra16">
         </div></a></li>
-        <li><a href="upload.php"><div style="position:relative; margin:5px 10px 10px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/upload.jpg'); background-size:cover;">
+        <li><a href="upload.php"><div id="pra17">
         </div></a>
         <li>
     <form action="" method="POST">
-   <div style="display: flex; align-items: center; margin:10px 0px; background-color:#fff;"><div><input type="text" id="sertext" onKeyup="Search()" 
-    placeholder="Search here"
-    style="height:50px; width:400px; text-align:center; padding:20px; position:relative;
-      background-color:#fff;"></div>
-     <a href="javascript:void(0);" onclick="Search()"><div style="height:50px; width:50px; background-image:url('images/searchicon.png'); background-size:cover; background-position:center;"></div>
+   <div id="pra18"><div ><input type="text" onKeyup="Search()" placeholder="Search here" id="pra19"></div>
+     </div>
+     <a href="javascript:void(0);" onclick="display()"><div id="pra20"></div>
      
-</div>
+</a>
     </form>    
     
     </li>
     </li>
     </ul></div>
-    <div
-    style="
-    margin:65px 0px 0px 1515px;
-    height:100vh;
-    width:630px;
-    background-color:#faf;
-    border:2px solid black;
-    z-index:2;
-    position:fixed;"
-    ></div>
-    <div
-    style="
-    margin:65px 0px 0px 0px;
-    height:100vh;
-    width:620px;
-    background-color:#faf;
-    border:2px solid black;
-    z-index:2;
-    position:fixed;"
-    ></div>
+    <div id="pra21"
+    >
+<marquee direction="up" scrollamount="2" height="100%" style="color:green; font-size:35px; text-style:bold; ">
+  This page was created by Mr. Prabin Poudel and Mr. Bibek Adhikari in partial fulfillment of 
+  BCA 6th sem Project II. Thanks to Asst. Prof. Mr. Narayan Prashad Dahal, who played a crucial 
+  role in helping us accomplish this privileged duty.
+</marquee>
+
+
+
+</div>
+    <div id="pra22">
+   <a href="#" onClick="filter()"><div id="pra23">
+
+
+
+   </div></a>
+
+</div>
    
     <?php
      echo "<div class='container bg-dark bg-gradient' style='width:900px; z-index:0; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
@@ -99,9 +96,9 @@ border-radius:15px;'></div>'
                Description:".$pdes."<br>
                  
             </h5>
-            <form action='esewa.php?pid=$pid;' method='POST'>
+            <form action='cart.php' method='POST'>
 
-            <input type='submit'  value='Pay Rs:$total Via esewa' style='height:50px;width:auto;border-radius:30px;
+            <input type='submit'  value='Add to Cart' style='height:50px;width:auto;border-radius:30px;
              background-color:yellow;color:red; font-weight:bold; margin:10px 0px 10px 300px;'>
             </form>
            </div>
@@ -125,5 +122,4 @@ if($con->connect_error){
     $sql="select *from uploads";
     $ra=$con->query($sql);
 }
-
 ?>

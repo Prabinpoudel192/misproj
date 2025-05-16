@@ -28,3 +28,14 @@ function esewa(pid){
  function Search(){
     alert("The search option was clicked");
  }
+ function display(){
+document.getElementById("pra18").style.display="block";
+document.getElementById("pra20").style.display="none";
+
+ }
+ function filter(){
+alert("The filter icon was clicked");
+
+
+
+ }
