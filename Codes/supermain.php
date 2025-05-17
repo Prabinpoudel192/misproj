@@ -49,12 +49,27 @@ if($con->connect_error){
 
 </div>
     <div id="pra22">
+  <!--All the filter as well as rest option will be inside this div.!-->
+  <div id="pra29">
    <a href="#" onclick="filter()"><div id="pra23">
 
 
 
    </div></a>
-   <div id="pra24">
+   <a href="#" onclick="addToCart()"><div id="pra28">
+
+
+
+   </div></a>
+</div>
+    <!--All the filter as well as rest option will be inside this div.!-->
+
+   <div  id="pra24">
+    <div id="pra27" onclick="filter1()">
+    
+
+    </div>
+     
    <form action="" method="post">
     <input type="text" name="pname" placeholder="Enter Product Name"><br>
     <label>Price:</label><br>
@@ -117,11 +132,11 @@ border-radius:15px;'></div>'
                Description:".$pdes."<br>
                  
             </h5>
-            <form action='cart.php' method='POST'>
-
-            <input type='submit'  value='Add to Cart' style='height:50px;width:auto;border-radius:30px;
-             background-color:yellow;color:red; font-weight:bold; margin:10px 0px 10px 300px;'>
-            </form>
+            <div id='pra30'>
+            <form action='esewa.php?pid=$pid;' method='POST' >
+            <input type='button' value='Add to Cart' onclick='addToCart()'>
+            <input type='submit'  value='Pay via Esewa $total' >
+            </form></div>
            </div>
 
 </div></div>";

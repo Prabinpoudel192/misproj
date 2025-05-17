@@ -8,7 +8,7 @@ html,body{
    background-position: top;
    background-repeat:no-repeat;
    z-index:0;
-}
+} 
 #praa{
     height:80px;
     width:100%;
@@ -137,6 +137,7 @@ html,body{
     padding:20px;
     background-color:black;
     border:5px solid black;
+    
 }
 #pra15 form{
     font-size: 25px;
@@ -150,6 +151,15 @@ html,body{
     font-size:25px;
     color:white;
 }
+#pra15 form input{
+height:50px;
+width:100%;
+font-size: 35px;
+text-align: center;
+font-weight:bole;
+margin-top:10px;
+}
+
 #pra16{
 position:relative;
 margin:15px 10px 100px 10px;
@@ -212,6 +222,7 @@ margin:65px 0px 0px 1510px;
     border:10px solid #a1f;
     z-index:2;
     position:fixed;
+    display:flex;
 
 }
 #pra21{
@@ -229,15 +240,16 @@ margin:65px 0px 0px 0px;
 #pra23{
 height:50px;
 width:50px;
-margin:50px 0px 50px 50px;
+margin:20px;
 border-radius:20px;
 background-image: url('../images/filter.png');
 background-size:cover;
 border:2px solid black;
-z-index:3;
+z-index:2;
+
 }
 #pra24{
-height:300px;
+height:350px;
 width:500px;
 padding:20px;
 margin:5px;
@@ -245,6 +257,7 @@ border:5px solid red;
 background-color:white;
 font-size:25px;
 font-weight:bold;
+display:none;
 
 }
 #pra24 form input{
@@ -254,4 +267,58 @@ width:100%;
 
 
 
+}
+#pra27{
+height:20px;
+width:20px;
+float:right;
+z-index:4;
+background-image:url('../images/close.jpg');
+background-size:cover;
+
+
+}
+#pra28{
+height:50px;
+width:50px;
+margin:20px;
+border-radius:20px;
+background-image: url('../images/cart.jpg');
+background-size:cover;
+border:2px solid black;
+z-index:2;
+
+
+
+}
+#pra29{
+height:300px;
+width:100%;
+display:flex;
+padding:20px;
+z-index:2;
+background-color:white;
+
+
+}
+#pra30{
+
+height:100px;
+width:80%;
+display:flex;
+align-items: center;
+padding:110px;
+
+}
+#pra30 form input{
+    
+    height:50px;
+    width:auto;
+    border-radius:30px;
+    background-color:yellow;
+    color:red; 
+    font-weight:bold; 
+    float:left;
+    margin-left:50px;
+    
 }

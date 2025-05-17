@@ -44,11 +44,38 @@ document.getElementById("pra26").value="low1";
 }else{
 document.getElementById("pra26").value="high1";
 
+}}
+function filter(){
+
+document.getElementById("pra29").style.display="none";
+document.getElementById("pra24").style.display="block";
+
+
+}
+function filter1(){
+
+document.getElementById("pra29").style.display="flex";
+document.getElementById("pra24").style.display="none";
+
+
+}
+function addToCart(){
+
+document.getElementById("pra29").style.display="none";
+document.getElementById("pra24").style.display="block";
+
+
+}
+function addToCart1(){
+
+document.getElementById("pra29").style.display="flex";
+document.getElementById("pra24").style.display="none";
+
+
 }
 
 
-
- }
+ 
   function second1(){
 
 var current=document.getElementById("pra26").value;
@@ -57,5 +84,5 @@ document.getElementById("pra25").value="low";
 
 }else{
 document.getElementById("pra25").value="high";
-Thesu isju prabinu poudelu
 }}
+
