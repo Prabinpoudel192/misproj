@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap-5.3.4-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.4-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <script defer src="index.js"></script>
     <script>
+        let visibledisp=false;
 document.addEventListener("mousemove", function () {
+    
+    if(!visibledisp){
     document.getElementById("disp").style.display = "block";
+    visibledisp=true;
+    
     setTimeout(()=>{
         document.getElementById("disp").style.display="none";
-       
+        visibledisp=false;
     },8000);
-});
+}});
 </script>
 
     

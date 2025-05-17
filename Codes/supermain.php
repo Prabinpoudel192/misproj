@@ -15,7 +15,7 @@ if($con->connect_error){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Super Main</title>
-    <link rel="stylesheet" href="bootstrap-5.3.4-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.4-dist/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -49,11 +49,32 @@ if($con->connect_error){
 
 </div>
     <div id="pra22">
-   <a href="#" onClick="filter()"><div id="pra23">
+   <a href="#" onclick="filter()"><div id="pra23">
 
 
 
    </div></a>
+   <div id="pra24">
+   <form action="" method="post">
+    <input type="text" name="pname" placeholder="Enter Product Name"><br>
+    <label>Price:</label><br>
+    <select id="pra25" name="price" onchange="second()"required>
+    <option value="">-- price --</option>
+    <option value="high">High</option>
+    <option value="low">Low</option>
+  </select>
+  
+  <label>To:</label>
+<select id="pra26" name="price1" onchange="second1()" required>
+    <option value="">-- price --</option>
+    <option value="high1">High</option>
+    <option value="low1">Low</option>
+  </select><br><br><br>
+  <input type="submit" value="filter">
+
+   </form>
+
+   </div>
 
 </div>
    

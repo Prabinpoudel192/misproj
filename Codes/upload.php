@@ -31,7 +31,7 @@ if(isset($_POST['post'])){
     $pdes=$_POST['comment'];
     $file_name=$_FILES['file']['name'];
     $file_tmp=$_FILES['file']['tmp_name'];
-    $file_folder="files/".$file_name;
+    $file_folder="../files/".$file_name;
     $total=$pprice+$ptax+$serchar;
    if(move_uploaded_file($file_tmp,$file_folder)){
     $con=new mysqli("localhost","root","","mis");

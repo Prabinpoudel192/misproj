@@ -1,3 +1,4 @@
+
 function login() {
     setTimeout(() =>{
     document.getElementById("pra4").style.display="block";
@@ -33,9 +34,28 @@ document.getElementById("pra18").style.display="block";
 document.getElementById("pra20").style.display="none";
 
  }
- function filter(){
-alert("The filter icon was clicked");
+ 
+ function second(){
+
+var current=document.getElementById("pra25").value;
+if(current==="high"){
+document.getElementById("pra26").value="low1";
+
+}else{
+document.getElementById("pra26").value="high1";
+
+}
 
 
 
  }
+  function second1(){
+
+var current=document.getElementById("pra26").value;
+if(current==="high1"){
+document.getElementById("pra25").value="low";
+
+}else{
+document.getElementById("pra25").value="high";
+
+}}

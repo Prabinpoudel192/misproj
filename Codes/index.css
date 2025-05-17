@@ -3,7 +3,7 @@ html,body{
    padding:0px;
    height:100vh;
    overflow:hidden;
-   background-image:url('images/bgindex.png');
+   background-image:url('../images/bgindex.png');
    background-size:cover;
    background-position: top;
    background-repeat:no-repeat;
@@ -120,14 +120,14 @@ html,body{
     border-radius:15px;
     border:5px solid purple;
 }
-.pra14{
-    margin:-100px 0px 0px 10px !important;
+#pra14{
+    margin:10px 0px 0px 10px !important;
     height:50px !important;
     width:50px !important;
     position:absolute !important;
     border:2px solid black !important;
     border-radius:50px !important;
-    background-image:url("images/images.jpeg") !important;
+    background-image:url("../images/images.jpeg") !important;
     background-size:cover !important;
 }
 #pra15{
@@ -157,7 +157,7 @@ border-radius:30px;
 height:50px; 
 width:50px; 
 border:2px solid green; 
-background-image:url('images/logout.png'); 
+background-image:url('../images/logout.png'); 
 background-size:cover;
 
 }
@@ -168,7 +168,7 @@ border-radius:30px;
 height:50px; 
 width:50px; 
 border:2px solid green;  
-background-image:url('images/upload.jpg'); 
+background-image:url('../images/upload.jpg'); 
 background-size:cover;
 
 }
@@ -195,7 +195,7 @@ z-index:9;
 height:50px; 
 width:50px;
 margin-top:15px; 
-background-image:url('images/searchicon.png'); 
+background-image:url('../images/searchicon.png'); 
 background-size:cover; 
 background-position:center; 
 border:5px solid black;
@@ -231,8 +231,27 @@ height:50px;
 width:50px;
 margin:50px 0px 50px 50px;
 border-radius:20px;
-background-image: url('images/filter.png');
+background-image: url('../images/filter.png');
 background-size:cover;
 border:2px solid black;
 z-index:3;
+}
+#pra24{
+height:300px;
+width:500px;
+padding:20px;
+margin:5px;
+border:5px solid red;
+background-color:white;
+font-size:25px;
+font-weight:bold;
+
+}
+#pra24 form input{
+height:50px;
+width:100%;
+
+
+
+
 }
