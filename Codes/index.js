@@ -57,5 +57,5 @@ document.getElementById("pra25").value="low";
 
 }else{
 document.getElementById("pra25").value="high";
-
+Thesu isju prabinu poudelu
 }}
