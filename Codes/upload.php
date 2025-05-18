@@ -34,7 +34,7 @@ if(isset($_POST['post'])){
     $file_folder="../files/".$file_name;
     $total=$pprice+$ptax+$serchar;
    if(move_uploaded_file($file_tmp,$file_folder)){
-    $con=new mysqli("localhost","root","","mis");
+    $con=new mysqli("localhost","root","","projectii");
     if($con->connect_error){
         die("No connection");
     }else{

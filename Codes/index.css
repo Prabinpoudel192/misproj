@@ -338,5 +338,11 @@ display:none;
 }
 #pra32{
 display:none;
+height:auto;
 
+
+}
+#pra32 a{
+    text-decoration: none;
+    color:inherit;
 }

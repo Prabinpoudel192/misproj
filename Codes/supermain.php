@@ -27,7 +27,7 @@ if($con->connect_error){
         </div></a>
         <li>
     <form action="" method="POST">
-   <div id="pra18"><div ><input type="text" onkeyup="fa()" value="Search here" id="pra19">
+   <div id="pra18"><div ><input type="text" onkeyup="fa()" placeholder="Search here" id="pra19">
 
 <span id="pra31"></span>
 </div>
@@ -41,8 +41,8 @@ if($con->connect_error){
     </li>
     </li>
     </ul></div>
-    <div id="pra21"
-    >
+    <div id="pra21" >
+    
 <marquee direction="up" scrollamount="2" height="100%" style="color:green; font-size:35px; text-style:bold; ">
   This page was created by Mr. Prabin Poudel and Mr. Bibek Adhikari in partial fulfillment of 
   BCA 6th sem Project II. Thanks to Asst. Prof. Mr. Narayan Prashad Dahal, who played a crucial 
@@ -52,12 +52,10 @@ if($con->connect_error){
 
 
 </div>
-    <div id="pra22">
+    <div id="pra22" >
   <!--All the filter as well as rest option will be inside this div.!-->
   <div id="pra29">
-    <div id="pra32">
-
-    </div>
+    
    <a href="#" onclick="filter()"><div id="pra23">
 
 
@@ -68,6 +66,9 @@ if($con->connect_error){
 
 
    </div></a>
+<div id="pra32">
+
+    </div>
 </div>
     <!--All the filter as well as rest option will be inside this div.!-->
 
@@ -101,7 +102,7 @@ if($con->connect_error){
 </div>
    
     <?php
-     echo "<div class='container bg-dark bg-gradient' style='width:900px; z-index:0; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
+     echo "<div class='container bg-dark bg-gradient' style='width:900px; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
     while($row=$ra->fetch_assoc()){
      $pid=$row['id'];
      $pname=$row['pname'];

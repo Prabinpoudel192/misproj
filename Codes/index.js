@@ -98,17 +98,32 @@ $(document).ready(function(){
             $('#pra23').css("display","none");
             $('#pra28').css("display","none");
             $('#pra32').css("display","block");
-            $('#pra32').html(data+"<br>");
+            $('#pra32').html('<a href="#" class="product" >'+data+'</a><br>');
             $("#pra32").css("font-size","35px");
             $('#pra32').css("color","green");
+            if(pn===data){
+$("#pra29").css("display","flex");
+$('#pra32').css("display","none");
+$('#pra23').css("display","flex");
+$('#pra28').css("display","flex");
+    }
         }
     })
 })
 }
+//search anchor logic starts here
+
+//search andchor logic ends here
+
+
+
+
 function hideUnhide(){
 document.getElementById("pra24").style.display="none"
-document.getElementById("Pra32").style.display="none"
+document.getElementById("pra32").style.display="none"
 document.getElementById("pra29").style.display="flex"
+document.getElementById("Pra23").style.display="flex"
+document.getElementById("pra28").style.display="flex"
 
 
 }

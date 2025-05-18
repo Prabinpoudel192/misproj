@@ -2,6 +2,11 @@
 include("db.php");
 
 $pname = $_POST["pname"];
+if($pname==""){
+echo "";
+exit(0);
+
+}
 $query="select *from uploads where pname like '%$pname%'";
 $result=$conn->query($query);
 $output="";
