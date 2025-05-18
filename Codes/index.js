@@ -26,9 +26,7 @@ function home(){
 function esewa(pid){
  window.location.href="esewa.php?pid="+ pid;
  }
- function Search(){
-    alert("The search option was clicked");
- }
+ 
  function display(){
 document.getElementById("pra18").style.display="block";
 document.getElementById("pra20").style.display="none";
@@ -86,3 +84,31 @@ document.getElementById("pra25").value="low";
 document.getElementById("pra25").value="high";
 }}
 
+function fa(){
+$(document).ready(function(){
+
+    let pn=$("#pra19").val();
+    $.ajax({
+        url:'search.php',
+        method:'POST',
+        data:{pname:pn},
+        success:function(data){
+            $('#pra18').css("z-index",6);
+            $('#pra31').css("display","block");
+            $('#pra23').css("display","none");
+            $('#pra28').css("display","none");
+            $('#pra32').css("display","block");
+            $('#pra32').html(data+"<br>");
+            $("#pra32").css("font-size","35px");
+            $('#pra32').css("color","green");
+        }
+    })
+})
+}
+function hideUnhide(){
+document.getElementById("pra24").style.display="none"
+document.getElementById("Pra32").style.display="none"
+document.getElementById("pra29").style.display="flex"
+
+
+}

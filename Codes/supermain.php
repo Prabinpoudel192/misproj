@@ -1,5 +1,5 @@
 <?php
-$con=new mysqli("localhost","root","","mis");
+$con=new mysqli("localhost","root","","projectii");
 if($con->connect_error){
     die("No connection.");
 }else{
@@ -27,8 +27,12 @@ if($con->connect_error){
         </div></a>
         <li>
     <form action="" method="POST">
-   <div id="pra18"><div ><input type="text" onKeyup="Search()" placeholder="Search here" id="pra19"></div>
+   <div id="pra18"><div ><input type="text" onkeyup="fa()" value="Search here" id="pra19">
+
+<span id="pra31"></span>
+</div>
      </div>
+     
      <a href="javascript:void(0);" onclick="display()"><div id="pra20"></div>
      
 </a>
@@ -51,6 +55,9 @@ if($con->connect_error){
     <div id="pra22">
   <!--All the filter as well as rest option will be inside this div.!-->
   <div id="pra29">
+    <div id="pra32">
+
+    </div>
    <a href="#" onclick="filter()"><div id="pra23">
 
 
@@ -65,7 +72,7 @@ if($con->connect_error){
     <!--All the filter as well as rest option will be inside this div.!-->
 
    <div  id="pra24">
-    <div id="pra27" onclick="filter1()">
+    <div id="pra27" onclick="hideUnhide()"> 
     
 
     </div>
@@ -85,7 +92,7 @@ if($con->connect_error){
     <option value="high1">High</option>
     <option value="low1">Low</option>
   </select><br><br><br>
-  <input type="submit" value="filter">
+  <input type="submit" value="filter" >
 
    </form>
 
@@ -147,15 +154,6 @@ border-radius:15px;'></div>'
     echo "</div>";
 ?>
 <script defer src="index.js"></script>
+<script defer src="../jquery/jquery.js"></script>
 </body>
 </html>
-/*
-<?php
-$con=new mysqli("localhost","root","","mis");
-if($con->connect_error){
-    die("No connection.");
-}else{
-    $sql="select *from uploads";
-    $ra=$con->query($sql);
-}
-?>

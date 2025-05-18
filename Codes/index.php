@@ -94,11 +94,11 @@ document.addEventListener("mousemove", function () {
 if(isset($_POST['post1'])){
     $uname=$_POST['uname'];
     $pwd=$_POST['pwd'];
-    $con=new mysqli("localhost","root","","mis");
+    $con=new mysqli("localhost","root","","projectii");
     if($con->connect_error){
         die("Connection Error");
     }else{
-        $sql="select acc from misdata where uname='$uname' and pwd='$pwd'";
+        $sql="select acc from login where uname='$uname' and pwd='$pwd'";
         $r=$con->query($sql);
         if($r && $r->num_rows > 0){ 
             $row = $r->fetch_assoc(); 
@@ -129,11 +129,11 @@ if(isset($_POST['post2'])){
     }else if($kacc=="gu"){
         $acc=3;
     }
-    $con=new mysqli("localhost","root","","mis");
+    $con=new mysqli("localhost","root","","projectii");
     if($con->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into misdata(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
         if($con->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
@@ -147,11 +147,11 @@ if(isset($_POST['post3'])){
     $uname=$_POST['uname'];
     $pwd=$_POST['pwd'];
     $acc=1;
-    $con=new mysqli("localhost","root","","mis");
+    $con=new mysqli("localhost","root","","projectii");
     if($con->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into misdata(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
         if($con->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
