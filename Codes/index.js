@@ -91,17 +91,22 @@ $(document).ready(function(){
     $.ajax({
         url:'search.php',
         method:'POST',
-        datatype:'text',
+        data:{pname:pn},
+        dataType:'json',
         success:function(data){
-            console.log(data[0]);
             $('#pra18').css("z-index",6);
             $('#pra31').css("display","block");
             $('#pra23').css("display","none");
             $('#pra28').css("display","none");
             $('#pra32').css("display","block");
+            $('#pra32').html("");
+            for(let i=0;i<data.length;i++){
+            $('#pra32').append('<a href="#" onclick="pra(\'' + data[i] + '\')">' + data[i] + '</a><br>');
+
+            }
             $("#pra32").css("font-size","35px");
             $('#pra32').css("color","green");
-            if(pn===data){
+            if(data.length===0){
 $("#pra29").css("display","flex");
 $('#pra32').css("display","none");
 $('#pra23').css("display","flex");
@@ -127,8 +132,8 @@ document.getElementById("pra28").style.display="flex"
 
 
 }
-function pra(){
-alert("Hello World");
+function pra(data){
+
 
 
 }
