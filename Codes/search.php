@@ -2,24 +2,20 @@
 include("db.php");
 
 $pname = $_POST["pname"];
-if($pname==""){
-echo "";
-exit(0);
-
+if($pname == ""){
+    echo json_encode([]);
+    exit(0);
 }
-$query="select *from uploads where pname like '%$pname%'";
-$result=$conn->query($query);
-$output="";
+
+$query = "SELECT * FROM uploads WHERE pname LIKE '%$pname%'";
+$result = $conn->query($query);
+$output = [];
+$i=0;
 while ($row = $result->fetch_assoc()) {
-$output .=$row["pname"]."<br>";
-    
+    $output[i] = $row["pname"];
+    $i++;
 }
-if($output==""){
-echo "No Result Found";
 
-}else{
 echo $output;
-
-}
 $conn->close();
 ?>

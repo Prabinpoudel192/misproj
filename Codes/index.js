@@ -91,14 +91,14 @@ $(document).ready(function(){
     $.ajax({
         url:'search.php',
         method:'POST',
-        data:{pname:pn},
+        datatype:'text',
         success:function(data){
+            console.log(data[0]);
             $('#pra18').css("z-index",6);
             $('#pra31').css("display","block");
             $('#pra23').css("display","none");
             $('#pra28').css("display","none");
             $('#pra32').css("display","block");
-            $('#pra32').html('<a href="#" class="product" >'+data+'</a><br>');
             $("#pra32").css("font-size","35px");
             $('#pra32').css("color","green");
             if(pn===data){
@@ -124,6 +124,11 @@ document.getElementById("pra32").style.display="none"
 document.getElementById("pra29").style.display="flex"
 document.getElementById("Pra23").style.display="flex"
 document.getElementById("pra28").style.display="flex"
+
+
+}
+function pra(){
+alert("Hello World");
 
 
 }

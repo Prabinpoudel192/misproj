@@ -66,7 +66,7 @@ if($con->connect_error){
 
 
    </div></a>
-<div id="pra32">
+<div id="pra32" >
 
     </div>
 </div>

@@ -292,7 +292,7 @@ z-index:2;
 
 
 }
-#pra29,#pra32{
+#pra29{
 height:300px;
 width:100%;
 display:flex;
@@ -337,10 +337,16 @@ display:none;
 
 }
 #pra32{
-display:none;
 height:auto;
-
-
+width:350px;
+padding:20px;
+z-index:2;
+display:none;
+background-color:black;
+margin-top:-40px;
+margin-left:80px;
+border:2px solid greenyellow;
+border-radius:15px;
 }
 #pra32 a{
     text-decoration: none;
