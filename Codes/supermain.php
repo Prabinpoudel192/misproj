@@ -1,13 +1,4 @@
-<?php
-$con=new mysqli("localhost","root","","projectii");
-if($con->connect_error){
-    die("No connection.");
-}else{
-    $sql="select *from uploads";
-    $ra=$con->query($sql);
-}
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +18,7 @@ if($con->connect_error){
         </div></a>
         <li>
     <form action="" method="POST">
-   <div id="pra18"><div ><input type="text" onkeyup="fa()" placeholder="Search here" id="pra19">
+   <div id="pra18"><div ><input type="text" onkeyup="fa()" placeholder="Search here" id="pra19" autocomplete="off">
 
 <span id="pra31"></span>
 </div>
@@ -100,61 +91,19 @@ if($con->connect_error){
    </div>
 
 </div>
+<div id="pra33">
+
+
+</div>
    
-    <?php
-     echo "<div class='container bg-dark bg-gradient' style='width:900px; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
-    while($row=$ra->fetch_assoc()){
-     $pid=$row['id'];
-     $pname=$row['pname'];
-     $pprice=$row['pprice'];
-     $pdes=$row['pdes'];
-     $fname=$row['fname'];
-     $tax=$row['tax'];
-     $sercha=$row['serchar'];
-     $total=$pprice+$tax+$sercha;
-
-     echo "<div style='height:auto; width:auto; background-color:#fff;z-index:0; position:relative; margin-top:100px;'>";
-     //display components starts here
-     echo "<div class='container-lg' style='margin-top:30px; margin-bottom:20px; background-color:#000;border-radius:25px; z-index:0;'>
-        <div class='container-fluid row' style='
-   z-index:0;
-   position:relative; 
-   margin:5px;
-   border-radius:20px; 
-   height:500px;
-   width:auto;
-box-sizing:border-box;
-border:5px solid purple;
-background-image:url(\"$fname\");
-background-size:100%;
-background-repeat:no-repeat;
-border-radius:15px;'></div>'
-        <div id='pra13'>
-            <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
-            <h5 style='font-weight:Bold; margin:10px;'>
-               Price:".$pprice."<br>
-               Service-Charge:".$sercha."<br> 
-               Taxable-Amount:".$tax."<br>
-               <hr>
-               Total-Amount:".$total."<br>
-               Description:".$pdes."<br>
-                 
-            </h5>
-            <div id='pra30'>
-            <form action='esewa.php?pid=$pid;' method='POST' >
-            <input type='button' value='Add to Cart' onclick='addToCart()'>
-            <input type='submit'  value='Pay via Esewa $total' >
-            </form></div>
-           </div>
-
-</div></div>";
-//display components ends here
-    }
-    echo "<input type='button' class='btn btn-danger newbtnstyle' value='Refresh' onClick='home()'
-    style='margin:30px 0px 10px 350px;'>";
-    echo "</div>";
-?>
+    
 <script defer src="index.js"></script>
 <script defer src="../jquery/jquery.js"></script>
+
 </body>
 </html>
+
+<?php
+include "display.php";
+
+?>

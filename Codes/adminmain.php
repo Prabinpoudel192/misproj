@@ -1,5 +1,5 @@
 <?php
-$con=new mysqli("localhost","root","","mis");
+$con=new mysqli("localhost","root","","projectII");
 if($con->connect_error){
     die("No connection.");
 }else{

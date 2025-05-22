@@ -352,3 +352,16 @@ border-radius:15px;
     text-decoration: none;
     color:inherit;
 }
+#pra33{
+
+    height:100%;
+    width:890px;
+    z-index:0;
+    background-color:white;
+    border:2px solid blue;
+    margin:65px 0px 0px 620px;
+    position:fixed;
+    display:none;
+    overflow-y: auto;
+
+}

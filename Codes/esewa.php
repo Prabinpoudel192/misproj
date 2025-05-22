@@ -1,13 +1,10 @@
 <?php
+include 'db.php';
 if (isset($_GET['pid'])) {
     $pid = rtrim($_GET['pid'],';');
-   
-    $con=new mysqli("localhost","root","","mis");
-    if($con->connect_error){
-        die("NO connection");
-    }else{
+    
         $sql="select pname,pprice,serchar,tax,total from uploads where id=$pid";
-        $r=$con->query($sql);
+        $r=$conn->query($sql);
         if($row=$r->fetch_assoc()){
             $pname=$row['pname'];
             $pprice=$row['pprice'];
@@ -17,7 +14,7 @@ if (isset($_GET['pid'])) {
         }else{
             echo "<script>alert('no data found')</script>";
         }
-    }
+    
 } else {
     echo "<script>alert('No product id found')</script>";
 }
@@ -53,8 +50,8 @@ if (isset($_GET['pid'])) {
  <label>Service Charge:</label><br><input type="text" id="product_service_charge" name="product_service_charge" value="<?php echo $serchar ?>" required>
  <label>Delivery Charge:</label><br><input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
  <label>Total-Amount:</label><br><input type="text" id="total_amount" name="total_amount" value="<?php echo $total ?>" required>
- <input type="hidden" id="success_url" name="success_url" value="https://localhost/misproj/sucess.php" required>
- <input type="hidden" id="failure_url" name="failure_url" value="https://localhost/misproj/supermain.php" required>
+ <input type="hidden" id="success_url" name="success_url" value="https://localhost/projectII/Codes/sucess.php" required>
+ <input type="hidden" id="failure_url" name="failure_url" value="https://localhost/projectII/Codes/supermain.php" required>
  <input type="hidden" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" required>
  <input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" required>
  <input value="Submit" type="submit" style="border-radius:30px;">

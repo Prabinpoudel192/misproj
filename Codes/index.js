@@ -127,13 +127,44 @@ function hideUnhide(){
 document.getElementById("pra24").style.display="none"
 document.getElementById("pra32").style.display="none"
 document.getElementById("pra29").style.display="flex"
-document.getElementById("Pra23").style.display="flex"
+document.getElementById("pra23").style.display="flex"
 document.getElementById("pra28").style.display="flex"
 
 
 }
 function pra(data){
+document.getElementById("pra32").style.display="none";
+document.getElementById("pra20").style.display="flex";
+document.getElementById("pra29").style.display="flex";
+document.getElementById("pra23").style.display="flex";
+document.getElementById("pra28").style.display="flex";
+document.getElementById("pra19").value="";
 
-
-
+let pn=data;
+   $(document).ready(function(){
+    $.ajax({
+        url:'display.php',
+        method:'POST',
+        data:{pname:pn},
+        dataType:'text',
+        success:function(data){
+            console.log(data);
+            $('#pra18').css("z-index",6);
+            $('#pra31').css("display","block");
+            $('#pra23').css("display","flex");
+            $('#pra28').css("display","flex");
+            $('#pra29').css("display","flex");
+            $('#pra32').css("display","none");
+            $('#pra34').html("");
+            $('#pra34').html(data);        
+            $("#pra32").css("font-size","35px");
+            $('#pra32').css("color","green");
+        }
+    })
+})
+    
 }
+
+
+
+
