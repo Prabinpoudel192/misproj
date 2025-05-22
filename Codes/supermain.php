@@ -69,7 +69,7 @@
 
     </div>
      
-   <form action="" method="post">
+   <form action="filter.php" method="post">
     <input type="text" name="pname" placeholder="Enter Product Name"><br>
     <label>Price:</label><br>
     <select id="pra25" name="price" onchange="second()"required>
@@ -83,7 +83,22 @@
     <option value="">-- price --</option>
     <option value="high1">High</option>
     <option value="low1">Low</option>
-  </select><br><br><br>
+  </select>
+
+
+    <div class="rangeslider">
+        <input type="range" min="1" max="1500000" value="1" onchange="change()" id="sliderRange">
+        <p>Price Range: <span id="demo">1</span></p>
+    </div>
+
+    <script>
+      function change(){
+       let sv=document.getElementById("sliderRange").value;
+        document.getElementById("demo").innerHTML=sv;
+      
+      }
+    </script><br>
+  <br><br><br>
   <input type="submit" value="filter" >
 
    </form>
@@ -94,6 +109,11 @@
 <div id="pra33">
 
 
+</div>
+<div id="pra35">
+  <div id="pra36" onclick="carthide()">
+
+  </div>
 </div>
    
     

@@ -45,9 +45,9 @@ document.getElementById("pra26").value="high1";
 }}
 function filter(){
 
-document.getElementById("pra29").style.display="none";
-document.getElementById("pra24").style.display="block";
 
+document.getElementById("pra24").style.display="block";
+document.getElementById("pra29").style.display="none";
 
 }
 function filter1(){
@@ -59,21 +59,10 @@ document.getElementById("pra24").style.display="none";
 }
 function addToCart(){
 
-document.getElementById("pra29").style.display="none";
-document.getElementById("pra24").style.display="block";
+document.getElementById("pra35").style.display="block";
 
 
-}
-function addToCart1(){
-
-document.getElementById("pra29").style.display="flex";
-document.getElementById("pra24").style.display="none";
-
-
-}
-
-
- 
+} 
   function second1(){
 
 var current=document.getElementById("pra26").value;
@@ -163,6 +152,11 @@ let pn=data;
     })
 })
     
+}
+function carthide(){
+
+document.getElementById("pra35").style.display="none";
+
 }
 
 

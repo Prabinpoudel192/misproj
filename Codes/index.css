@@ -250,7 +250,7 @@ z-index:2;
 
 }
 #pra24{
-height:350px;
+height:600px;
 width:500px;
 padding:20px;
 margin:5px;
@@ -364,4 +364,27 @@ border-radius:15px;
     display:none;
     overflow-y: auto;
 
+}
+#pra35{
+height:500px;
+width:890px;
+background-color: rgba(255, 255, 255, 0.6);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border:2px solid black;
+position:fixed;
+margin:100px 10px 10px 620px;
+z-index: 2;
+display:none;
+border-radius:10px;
+padding:20px;
+
+
+}
+#pra36{
+    height:20px;
+width:20px;
+background-image:url('../images/close.jpg');
+background-size:cover;
+position:fixed;
 }
