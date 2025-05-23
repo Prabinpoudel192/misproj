@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $range = $_POST['range'];      
 
    if($price=="high"){
-    $query="select *from uploads where pname='$pname' and total<=$range order by total asc";
+    $query="select *from uploads where pname like'%$pname%' and total <=$range order by total asc";
    }else{
-$query="select *from uploads where pname='$pname' and total<=$range order by total desc";
+$query="select *from uploads where pname like'%$pname%' and total<=$range order by total desc";
    }
 $html= "<div id='pra34' class='container bg-dark bg-gradient' style='width:900px; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>";
 $ra = $conn->query($query);
@@ -157,7 +157,7 @@ $conn->close();
 
 
     <div class="rangeslider">
-        <input type="range" min="1" max="1500000" value="1" onchange="change()" id="sliderRange" name="range">
+        <input type="range" min="1" max="150000" value="1" onchange="change()" id="sliderRange" name="range">
         <p>Price Range: <span id="demo">1</span></p>
     </div>
 
