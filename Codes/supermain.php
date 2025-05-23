@@ -87,7 +87,7 @@
 
 
     <div class="rangeslider">
-        <input type="range" min="1" max="1500000" value="1" onchange="change()" id="sliderRange">
+        <input type="range" min="1" max="1500000" value="1" onchange="change()" id="sliderRange" name="range">
         <p>Price Range: <span id="demo">1</span></p>
     </div>
 
