@@ -1,4 +1,6 @@
 
+let cart = [];
+        let filteredProducts = [];
 function login() {
     setTimeout(() =>{
     document.getElementById("pra4").style.display="block";
@@ -57,9 +59,28 @@ document.getElementById("pra24").style.display="none";
 
 
 }
-function addToCart(){
+function addToCart1(){
 
 document.getElementById("pra35").style.display="block";
+
+
+
+} 
+function addToCart(str){
+
+document.getElementById("pra35").style.display="block";
+    $.ajax({
+        url:'cart.php',
+        method:'POST',
+        data:{pname:str},
+        dataType:'json',
+        success:function(data){
+           alert(data);
+            
+    
+        }
+    })
+
 
 
 } 
@@ -158,7 +179,133 @@ function carthide(){
 document.getElementById("pra35").style.display="none";
 
 }
+const products=[];
+datafetch();
+function datafetch(){
+$(document).ready(function(){
+    $.ajax({
+        url:'display1.php',
+        method:'POST',
+        dataType:'json',
+        success:function(res){
+            res.forEach(element => {
+             products.push(element);
+            });
+            filteredProducts = [...products];
+     init();
+     
+        }
+    });
+});
+
+}
+    
+    
 
 
+        // Initialize the page
+        function init() {
+            displayProducts(filteredProducts);
+            updateCartCount();
+        }
 
+        // Display products in grid
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
 
+            productsToShow.forEach(product => {
+                const productCard = createProductCard(product);
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Create product card element
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            
+            const stockStatus = getStockStatus(product.stock);
+            
+            card.innerHTML = `
+                <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:auto; height:100%;"></div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-footer">
+                        <span class="product-price">$${product.price}</span>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
+                            ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
+                    </div>
+                    <div class="stock-status ${stockStatus.class}">${stockStatus.text}</div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Get stock status
+        function getStockStatus(stock) {
+            if (stock === 0) {
+                return { class: 'out-of-stock', text: 'Out of Stock' };
+            } else if (stock < 10) {
+                return { class: 'low-stock', text: `Low Stock (${stock} left)` };
+            } else {
+                return { class: 'in-stock', text: `In Stock (${stock} available)` };
+            }
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product && product.stock > 0) {
+                cart.push(product);
+                updateCartCount();
+                
+                // Simple feedback
+                alert(`${product.name} added to cart!`);
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // Toggle cart (placeholder function)
+        function toggleCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+            } else {
+                const cartItems = cart.map(item => item.name).join('\n');
+                alert(`Cart Items:\n${cartItems}\n\nTotal Items: ${cart.length}`);
+            }
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filterProducts();
+        });
+
+        // Category filter
+        document.getElementById('categoryFilter').addEventListener('change', function(e) {
+            filterProducts();
+        });
+
+        // Filter products based on search and category
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+
+            displayProducts(filteredProducts);
+        }

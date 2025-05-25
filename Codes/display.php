@@ -50,7 +50,7 @@ while ($row = $ra->fetch_assoc()) {
             </h5>
             <div id='pra30'>
                 <form action='esewa.php?pid=$pid' method='POST'>
-                    <input type='button' value='Add to Cart' onclick='addToCart($pid)'>
+                    <input type='button' value='Add to Cart' onclick='addToCart(\"$pid\")'>
                     <input type='submit' value='Pay via Esewa $total'>
                 </form>
             </div>

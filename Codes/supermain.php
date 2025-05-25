@@ -52,7 +52,7 @@
 
 
    </div></a>
-   <a href="#" onclick="addToCart()"><div id="pra28">
+   <a href="#" onclick="addToCart1()"><div id="pra28">
 
 
 
@@ -114,6 +114,7 @@
   <div id="pra36" onclick="carthide()">
 
   </div>
+  <div id="pra37"></div>
 </div>
    
     

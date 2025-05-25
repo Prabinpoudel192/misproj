@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is prabin poudel</h1>
-</body>
-</html>
-
 <?php
+include "db.php";
 
-echo "hi this is prabin poudel."
+$pid = $_POST['pname'];
+$query = "INSERT INTO cart(id, qty) VALUES ('$pid', 20)";
+$res = $conn->query($query);
 
+if ($res) {
+    $query1 = "SELECT * FROM cart";
+    $res1 = $conn->query($query1);
 
+    if ($res1 && $row = $res1->fetch_assoc()) {
+        $pname = $row["id"];
+        $total = $row["qty"];
+        echo $pname . " " . $total . " ";
+    } else {
+        echo "Error fetching inserted data.";
+    }
+} else {
+    echo "No data inserted";
+}
+
+$conn->close();
 ?>
