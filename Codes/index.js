@@ -368,3 +368,19 @@ $(document).ready(function(){
         function mainpage(){
             window.location.href="index.php";
         }
+        let j=0;
+        function dispfilter(){
+            if(j%2==0){
+                j=0;
+            document.getElementsByClassName('filter-div')[0].style.display="block";
+            }else{
+                document.getElementsByClassName('filter-div')[0].style.display="none";
+            }
+        
+        j++;
+        }
+        function change(){
+       let sv=document.getElementById("sliderRange").value;
+        document.getElementById("demo").innerHTML=sv;
+      
+      }

@@ -51,6 +51,10 @@
             </div>
             
             <div class="nav-right">
+                    <div class="filter-container" onclick="dispfilter()">
+                    <div class="filter-icon"></div>
+                    
+                </div>
                 <div class="cart-container" onclick="toggleCart()">
                     <div class="cart-icon"></div>
                     <div class="cart-count" id="cartCount">0</div>
@@ -71,6 +75,34 @@
 
     <!-- Main Content -->
     <div class="container">
+         <div class="filter-div">     
+   <form action="filter.php" method="post">
+    <input type="text" name="pname" placeholder="Enter Product Name"><br>
+    <label>Price:</label>
+    <select id="pra25" name="price" onchange="second()"required>
+    <option value="">-- price --</option>
+    <option value="high">High</option>
+    <option value="low">Low</option>
+  </select>
+  
+  <label>To:</label>
+<select id="pra26" name="price1" onchange="second1()" required>
+    <option value="">-- price --</option>
+    <option value="high1">High</option>
+    <option value="low1">Low</option>
+  </select>
+
+
+    <div class="rangeslider">
+        <input type="range" min="1" max="150000" value="1" onchange="change()" id="sliderRange" name="range">
+        <p>Price Range: <span id="demo">1</span></p>
+    </div>
+  <input type="submit" value="filter" style="margin-Top:100px;">
+
+   </form>
+
+  
+    </div>
         <div class="page-header">
             <h1 class="page-title">Product Catalog</h1>
             <p class="page-subtitle">Discover our wide range of quality products</p>
