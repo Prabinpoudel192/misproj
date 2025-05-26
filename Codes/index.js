@@ -238,9 +238,12 @@ $(document).ready(function(){
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-description">${product.description}</p>
                     <div class="product-footer">
-                        <span class="product-price">$${product.price}</span>
+                        <span class="product-price">Rs.${product.price}</span>
                         <button class="add-to-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
                             ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
+                        <button class="add-to-cart" onclick="esewa(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
+                            ${product.stock === 0 ? 'Out of Stock' : 'Esewa Payment'}
                         </button>
                     </div>
                     <div class="stock-status ${stockStatus.class}">${stockStatus.text}</div>
@@ -299,6 +302,9 @@ $(document).ready(function(){
             if (cart.length === 0) {
                 alert('Your cart is empty!');
             } else {
+
+
+                //alert alert this place is the place to customize cart>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 const cartItems = cart.map(item => item.name).join('\n');
                 alert(`Cart Items:\n${cartItems}\n\nTotal Items: ${cart.length}`);
             }

@@ -43,7 +43,10 @@
                     <option value="clothing">Clothing</option>
                     <option value="food">Food & Beverages</option>
                     <option value="home">Home & Garden</option>
-                    <option value="books">Books</option>
+                    <option value="books">Books and Stationary</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="pet">Pets</option>
+                    <option value="kids">Kids</option>
                 </select>
             </div>
             
