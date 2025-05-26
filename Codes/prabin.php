@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <style>
+    
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+
+
+    </style>
     <title>SuperMain</title>
     
 </head>
@@ -36,12 +53,12 @@
                     <div class="cart-count" id="cartCount">0</div>
                 </div>
                 <!-- This portion is for upload -->
-                <div class="upload-container" onclick="toggleCart()">
+                <div class="upload-container" onclick="upload()">
                     <div class="upload-icon"></div>
                     
                 </div>
                 <!-- This portion is for logout -->
-                <div class="logout-container" onclick="toggleCart()">
+                <div class="logout-container" onclick="mainpage()">
                     <div class="logout-icon"></div>
                     
                 </div>

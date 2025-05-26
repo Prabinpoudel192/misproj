@@ -1,7 +1,12 @@
 <?php
 include "db.php";
+$pid=$_POST['pid'];
 $data=[];
+if($pid==""){
 $query="select id,pname,pdes,total,category,stock,fname from uploads";
+}else{
+    $query="select *from uploads where id='$pid'";
+}
 $res=$conn->query($query);
 while($row=$res->fetch_assoc()){
      $data[] = [

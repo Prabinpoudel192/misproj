@@ -3,27 +3,30 @@ let cart = [];
         let filteredProducts = [];
 function login() {
     setTimeout(() =>{
-    document.getElementById("pra4").style.display="block";
-    document.getElementById("pra5").style.display="none";
-    document.getElementById("pra10").style.display="none";
+    document.getElementById('welcome').style.display = 'none';
+            document.getElementById('pra4').style.display = 'block';
+            document.getElementById('pra5').style.display = 'none';
+            document.getElementById('pra10').style.display = 'none';
 }, 2000);
 }
 function signup(){
     setTimeout(()=>{
-        document.getElementById("pra5").style.display="block";
-        document.getElementById("pra4").style.display="none";
-        document.getElementById("pra10").style.display="none";
+         document.getElementById('welcome').style.display = 'none';
+            document.getElementById('pra4').style.display = 'none';
+            document.getElementById('pra5').style.display = 'block';
+            document.getElementById('pra10').style.display = 'none';
     },2000);
 }
 function admin(){
     setTimeout(()=>{
-        document.getElementById("pra10").style.display="block";
-        document.getElementById("pra5").style.display="none";
-        document.getElementById("pra4").style.display="none";
+        document.getElementById('welcome').style.display = 'none';
+            document.getElementById('pra4').style.display = 'none';
+            document.getElementById('pra5').style.display = 'none';
+            document.getElementById('pra10').style.display = 'block';
     },2000);
 }
 function home(){
-    window.location.href="supermain.php";
+    window.location.href="prabin.php";
 }
 function esewa(pid){
  window.location.href="esewa.php?pid="+ pid;
@@ -130,7 +133,9 @@ $('#pra28').css("display","flex");
 
 //search andchor logic ends here
 
-
+function upload(){
+    window.location.href="upload.php";
+}
 
 
 function hideUnhide(){
@@ -228,7 +233,7 @@ $(document).ready(function(){
             const stockStatus = getStockStatus(product.stock);
             
             card.innerHTML = `
-                <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:auto; height:100%;"></div>
+                <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:85%; height:100%;"></div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-description">${product.description}</p>
@@ -258,15 +263,31 @@ $(document).ready(function(){
 
         // Add product to cart
         function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product && product.stock > 0) {
-                cart.push(product);
-                updateCartCount();
+    $.ajax({
+        url: 'display1.php',
+        method: 'POST',
+        data: { pid: productId },
+        dataType: 'json',
+        success: function(res) {
+            if (res.length > 0) {
+                const product = res[0]; // Take the single product object returned
                 
-                // Simple feedback
-                alert(`${product.name} added to cart!`);
+                if (product.stock > 0) {
+                    cart.push(product);
+                    updateCartCount();
+                    alert(`${product.name} added to cart!`);
+                } else {
+                    alert('Product is out of stock.');
+                }
+            } else {
+                alert('Product not found.');
             }
+        },
+        error: function() {
+            alert('Error fetching product data.');
         }
+    });
+}
 
         // Update cart count
         function updateCartCount() {
@@ -308,4 +329,36 @@ $(document).ready(function(){
             });
 
             displayProducts(filteredProducts);
+        }
+
+
+
+         document.addEventListener('DOMContentLoaded', function() {
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.submit-btn, .newbtnstyle');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+
+        function mainpage(){
+            window.location.href="index.php";
         }

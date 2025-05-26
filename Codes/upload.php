@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <title>Upload Form</title>
+    <style>
+    *{
+        margin:0px;
+        padding:3px;
+    }
+    body{
+        background-image:url("../images/bgindex.png");
+        background-size:cover;
+        background-repeat:no-repeat;
+        
+    }
+
+
+    </style>
 </head>
 <body>
 <button id="pra14" onclick="home()"></button>
@@ -14,9 +28,18 @@
         <input type="text" name="name" placeholder="name" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br>
         <input type="text" name="price" placeholder="price" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br>
         <input type="text" name="serchar" placeholder="service-charge" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br>
-        <textarea placeholder="Product Description" name="comment" style="height:75px; width:90%; margin:10px"></textarea><br><br>
-            <input type="file" name="file" accept="image/*"><br><br>
-            <input type="submit" value="post" name="post" style="height:40px; width:60px; margin:40px 0px 0px 150px;">
+        <input type="number" name="stock" placeholder="Quantity" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br>
+        <select class="filter-dropdown" id="categoryFilter" style="margin:10px; height:60px;width:90%;border-radius:15px; text-align:center;font-size:20px;">
+                    <option value="">Select Category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="books">Books</option>
+                </select>
+        <textarea placeholder="Product Description" name="comment" style="height:150px; width:90%; margin:10px; color:green; font-size:15px; font-weight:bold;border-radius:20px; text-align:center;"></textarea><br><br>
+            <input type="file" name="file" accept="image/*" style="margin:10px;height:30px;width:90%;border-radius:15px; text-align:center;font-size:20px;"><br><br>
+            <input type="submit" value="post" name="post" style="height:80px; width:120px; border-radius:25px; margin:40px 0px 0px 150px;">
         </form>
     </div>
 </body>

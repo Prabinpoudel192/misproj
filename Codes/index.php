@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap-5.3.4-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-    <script defer src="index.js"></script>
     <script>
         let visibledisp=false;
 document.addEventListener("mousemove", function () {
@@ -20,102 +19,174 @@ document.addEventListener("mousemove", function () {
     },8000);
 }});
 </script>
-
-    
     <title>BUYMART MANAGEMENT SYSTEM</title>
 </head>
-<body >
+<body>
     <style>
-      
-    .newbtnstyle{
-        height:50px !important;
-        width:100px !important;
-        margin:10px !important;
-        text-align:center !important;
-        font-size:20px !important;
-        font-weight: bold !important;
-        border-radius:30px !important;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            position: relative;
+            z-index:0;
+        }
+
+         body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:url("../images/bgindex.png");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            z-index: -1;
+        } 
         
-    }
-    .searchstyle{
-        height:40px !important;
-        width:300px !important;
-        padding:10px !important;
-        font-weight:bold !important;
-        font-size:30px !important;
-        border-radius:15px !important;
-        text-align:center !important;
-        margin-right:10px !important;
-        margin-top:20px !important;
-        float:right !important; 
-    }
-
-
     </style>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
+    <!-- Navigation Bar -->
     <div class="text-danger bg-info" style="display:none;" id="disp">
         <input type="button" class="btn btn-danger newbtnstyle" value="Login" onclick="login()">
-        <input type="button" class="btn btn-primary newbtnstyle" value="signup" onclick="signup()">
-        <input type="button" class="btn btn-light newbtnstyle" value="admin" onclick="admin()">
-        
-</div>
+        <input type="button" class="btn btn-primary newbtnstyle" value="Signup" onclick="signup()">
+        <input type="button" class="btn btn-light newbtnstyle" value="Admin" onclick="admin()">
+    </div>
 
-<div id="pra4">
-    <form action="" method="post">
-        <input type="text" placeholder="username" name="uname"><br><br>
-        <input type="password" name="pwd"><br><br>
-        <input type="submit" value="submit" name="post1" style="height:40px; width:100px; border-radius:15px; margin:20px 0px 10px 130px"><br><br>
-    </form>
-</div>
-<div id="pra5">
-<form action="" method="post">
-        <input type="text" placeholder="First Name" name="fname"><br>
-        <input type="text" placeholder="Last Name" name="lname"><br>
-        <input type="text" placeholder="User Name" name="uname"><br>
-        <input type="password" name="pwd"><br>
-       <div id="pra9"><label>Super user:</label><input type="radio" name="acc" value="su">
-       <label>Guest user:</label><input type="radio" name="acc" value="gu"><br></div>
-        <input type="submit" value="submit" name="post2" style="height:40px; width:100px; border-radius:15px; margin:20px 0px 10px 130px"><br>
-    </form>
-</div>
-<div id="pra10">
-<form action="" method="post">
-        <input type="text" placeholder="First Name" name="fname"><br>
-        <input type="text" placeholder="Last Name" name="lname"><br>
-        <input type="text" placeholder="User Name" name="uname"><br>
-        <input type="password" name="pwd"><br>
-        <input type="submit" value="submit" name="post3" style="height:40px; width:100px; border-radius:15px; margin:20px 0px 10px 130px"><br>
-    </form>
-</div>
+    <div class="main-container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcome">
+            <h1 class="welcome-title icon-cart">
+                BUYMART
+            </h1>
+            <p class="welcome-subtitle">Management System</p>
+            <p class="welcome-instruction icon-mouse">
+                Move your mouse to get started
+            </p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container" id="pra4">
+            <h2 class="form-title icon-login">
+                Welcome Back
+            </h2>
+            <p class="form-subtitle">Sign in to your account</p>
+            <form action="" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Username" name="uname" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Password" name="pwd" required>
+                </div>
+                <input type="submit" value="Sign In" name="post1" class="submit-btn">
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-container" id="pra5">
+            <h2 class="form-title icon-signup">
+                Join Us
+            </h2>
+            <p class="form-subtitle">Create your account</p>
+            <form action="" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="First Name" name="fname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Username" name="uname" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Password" name="pwd" required>
+                </div>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="acc" value="su" id="su" required>
+                        <label for="su">Super User</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="acc" value="gu" id="gu" required>
+                        <label for="gu">Guest User</label>
+                    </div>
+                </div>
+                <input type="submit" value="Create Account" name="post2" class="submit-btn">
+            </form>
+        </div>
+
+        <!-- Admin Form -->
+        <div class="form-container" id="pra10">
+            <h2 class="form-title icon-admin">
+                Admin Access
+            </h2>
+            <p class="form-subtitle">Administrator registration</p>
+            <form action="" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="First Name" name="fname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Username" name="uname" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Password" name="pwd" required>
+                </div>
+                <input type="submit" value="Register Admin" name="post3" class="submit-btn">
+            </form>
+        </div>
+    </div>
 </body>
+<script defer src="index.js"></script>
 </html>
 
-
 <?php
+include "db.php";
 if(isset($_POST['post1'])){
     $uname=$_POST['uname'];
     $pwd=$_POST['pwd'];
-    $con=new mysqli("localhost","root","","projectii");
-    if($con->connect_error){
-        die("Connection Error");
-    }else{
         $sql="select acc from login where uname='$uname' and pwd='$pwd'";
-        $r=$con->query($sql);
+        $r=$conn->query($sql);
         if($r && $r->num_rows > 0){ 
             $row = $r->fetch_assoc(); 
             $acc = $row['acc']; 
             if($acc == 1){
-                header("Location: adminmain.php"); 
+              echo "<script> window.location.href = 'adminmain.php';</script>";
+              exit();
             }else if($acc == 2){
-                header("Location: supermain.php"); 
+                echo "<script> window.location.href = 'prabin.php';</script>";
+               exit();
             }else if($acc == 3){
-                header("Location: guestmain.php"); 
+               echo "<script> window.location.href = 'guestmain.php';</script>";
+               exit();
             }
         }else{
             echo "<script>alert('User not found')</script>"; 
         }
     }
 
-}
+
+
+
 if(isset($_POST['post2'])){
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
@@ -129,12 +200,11 @@ if(isset($_POST['post2'])){
     }else if($kacc=="gu"){
         $acc=3;
     }
-    $con=new mysqli("localhost","root","","projectii");
-    if($con->connect_error){
+    if($conn->connect_error){
         die("Connection Error");
     }else{
         $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
-        if($con->query($sql) === TRUE){  
+        if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
             echo "<script>alert('Error in registration')</script>"; 
@@ -147,12 +217,11 @@ if(isset($_POST['post3'])){
     $uname=$_POST['uname'];
     $pwd=$_POST['pwd'];
     $acc=1;
-    $con=new mysqli("localhost","root","","projectii");
-    if($con->connect_error){
+    if($conn->connect_error){
         die("Connection Error");
     }else{
         $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
-        if($con->query($sql) === TRUE){  
+        if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
             echo "<script>alert('Error in registration')</script>"; 
