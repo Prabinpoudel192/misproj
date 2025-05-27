@@ -1,6 +1,8 @@
 
 let cart = [];
-        let filteredProducts = [];
+let filteredProducts = [];
+let tc=0;
+        
 function login() {
     setTimeout(() =>{
     document.getElementById('welcome').style.display = 'none';
@@ -264,14 +266,14 @@ $(document).ready(function(){
         // Add product to cart
         function addToCart(productId) {
     $.ajax({
-        url: 'display1.php',
+        url: 'cart.php',
         method: 'POST',
         data: { pid: productId },
         dataType: 'json',
         success: function(res) {
             if (res.length > 0) {
-                const product = res[0]; // Take the single product object returned
-                
+                res.forEach((product, i) => {
+                 console.log(product);
                 if (product.stock > 0) {
                     cart.push(product);
                     updateCartCount();
@@ -279,13 +281,13 @@ $(document).ready(function(){
                 } else {
                     alert('Product is out of stock.');
                 }
-            } else {
+          });  } else {
                 alert('Product not found.');
             }
         },
         error: function() {
             alert('Error fetching product data.');
-        }
+         }
     });
 }
 
@@ -302,9 +304,43 @@ $(document).ready(function(){
 
 
                 //alert alert this place is the place to customize cart>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                const cartItems = cart.map(item => item.name).join('\n');
-                alert(`Cart Items:\n${cartItems}\n\nTotal Items: ${cart.length}`);
+                const cartItems = cart;
+let str = '<table border="2" class="cart-table">';
+
+// Correct header row: use <thead> with <tr> and <th> (not <td> inside <th>)
+str += `<thead>
+            <tr>
+                <th>Product-Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Buy/Remove</th>
+            </tr>
+        </thead>`;
+
+str += '<tbody>';
+for (let i = 0; i < cartItems.length; i++) {
+    str += `<tr>
+                <td>${cartItems[i].name}</td>
+                <td>RS.${cartItems[i].price}</td>
+                <td><img src="${cartItems[i].image}" alt="Product Image"></td>
+                <td>Here will be the quantityadd button</td>
+                <td>Here will be the delete and buy button</td>
+            </tr>`;
+}
+str += '</tbody>';
+
+str += '</table>';
+if(tc%2==0){
+document.getElementsByClassName('cart-div')[0].style.display = "block";
+document.getElementsByClassName('cart-div')[0].innerHTML = str;
+tc=0;
+}else{
+document.getElementsByClassName('cart-div')[0].style.display = "none";
+}
+tc++;
             }
+            
         }
 
         // Search functionality
@@ -382,10 +418,16 @@ $(document).ready(function(){
       
       }
       function sortFilter(){
-   let name=document.getElementById('pname').value;
+        document.getElementsByClassName('filter-div')[0].style.display="none";
+      let name=document.getElementById('pname').value;
    let category=document.getElementById('cfilter').value;
    let price=document.getElementById('pra25').value;
    let range=document.getElementById('sliderRange').value;
+   document.getElementById('pname').value="";
+   document.getElementById('cfilter').value="";
+   document.getElementById('pra25').value="";
+   document.getElementById('sliderRange').value=1;
+   document.getElementById('demo').innerHTML="1";
     $.ajax({
         url:'filter.php',
         method:'POST',
@@ -396,14 +438,11 @@ $(document).ready(function(){
             range:range
 },
         dataType:'json',
-        success:function(res){
-
-
-                    res.forEach(element => {
-             products.push(element);
-            });
-            filteredProducts = [...products];
-     init();
+       success:function(res){  
+        displayProducts(res);
      
         }
-    }); }
+        
+    }); 
+}
+

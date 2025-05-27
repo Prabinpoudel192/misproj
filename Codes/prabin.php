@@ -76,7 +76,7 @@
     <!-- Main Content -->
     <div class="container">
          <div class="filter-div">     
-   <form action="#" method="post">
+   <form action="" method="post" >
     <input type="text" id="pname" placeholder="Enter Product Name"><br>
     <select  id="cfilter">
                     <option value="">All Categories</option>
@@ -108,11 +108,12 @@
         <input type="range" min="1" max="150000" value="1" onchange="change()" id="sliderRange" name="range">
         <p>Price Range: <span id="demo">1</span></p>
     </div>
-  <input type="submit" value="filter" onclick="sortFilter()" style="margin-Top:100px;">
+  <input type="button" value="filter" onclick="sortFilter()" style="margin-Top:100px;">
 
-   </form>
+   </form>  
+    </div>
+    <div class="cart-div">
 
-  
     </div>
         <div class="page-header">
             <h1 class="page-title">Product Catalog</h1>

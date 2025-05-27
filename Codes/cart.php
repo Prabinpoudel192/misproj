@@ -1,23 +1,31 @@
 <?php
 include "db.php";
-
-$pid = $_POST['pname'];
-$query = "INSERT INTO cart(id, qty) VALUES ('$pid', 20)";
-$res = $conn->query($query);
-
+$pid=$_POST['pid'];
+$query="insert into cart(id,qty)values($pid,1)";
+$res=$conn->query($query);
+$data=[];
 if ($res) {
-    $query1 = "SELECT * FROM cart";
+    $query1 = "SELECT *FROM uploads where id=$pid";
     $res1 = $conn->query($query1);
 
-    if ($res1 && $row = $res1->fetch_assoc()) {
-        $pname = $row["id"];
-        $total = $row["qty"];
-        echo $pname . " " . $total . " ";
+    if($res1) {
+        while($row=$res1->fetch_assoc()){
+        $data[] = [
+        'id' => $row['id'],
+        'name' => $row['pname'],
+        'description' => $row['pdes'],
+        'price' => (float)$row['total'],
+        'category' => $row['category'],
+        'stock' => $row['stock'],
+        'image' => $row['fname']  
+    ];
+}
+        echo json_encode($data);
     } else {
-        echo "Error fetching inserted data.";
+        echo json_encode("Error fetching inserted data.");
     }
 } else {
-    echo "No data inserted";
+    echo json_encode("No data inserted");
 }
 
 $conn->close();
