@@ -76,8 +76,19 @@
     <!-- Main Content -->
     <div class="container">
          <div class="filter-div">     
-   <form action="filter.php" method="post">
-    <input type="text" name="pname" placeholder="Enter Product Name"><br>
+   <form action="#" method="post">
+    <input type="text" id="pname" placeholder="Enter Product Name"><br>
+    <select  id="cfilter">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="books">Books and Stationary</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="pet">Pets</option>
+                    <option value="kids">Kids</option>
+                </select>
     <label>Price:</label>
     <select id="pra25" name="price" onchange="second()"required>
     <option value="">-- price --</option>
@@ -97,7 +108,7 @@
         <input type="range" min="1" max="150000" value="1" onchange="change()" id="sliderRange" name="range">
         <p>Price Range: <span id="demo">1</span></p>
     </div>
-  <input type="submit" value="filter" style="margin-Top:100px;">
+  <input type="submit" value="filter" onclick="sortFilter()" style="margin-Top:100px;">
 
    </form>
 

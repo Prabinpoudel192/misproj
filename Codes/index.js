@@ -204,10 +204,6 @@ $(document).ready(function(){
 });
 
 }
-    
-    
-
-
         // Initialize the page
         function init() {
             displayProducts(filteredProducts);
@@ -237,14 +233,15 @@ $(document).ready(function(){
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-description">${product.description}</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs.${product.price}</span>
+                         <div class="product-footer">
+                        <span class="product-price" style="margin-left:80px;">Rs.${product.price}</span>
+                        <div style="margin-left:30px; paddin:30px;">
                         <button class="add-to-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
                             ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
                         </button>
                         <button class="add-to-cart" onclick="esewa(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
                             ${product.stock === 0 ? 'Out of Stock' : 'Esewa Payment'}
-                        </button>
+                        </button></div>
                     </div>
                     <div class="stock-status ${stockStatus.class}">${stockStatus.text}</div>
                 </div>
@@ -384,3 +381,29 @@ $(document).ready(function(){
         document.getElementById("demo").innerHTML=sv;
       
       }
+      function sortFilter(){
+   let name=document.getElementById('pname').value;
+   let category=document.getElementById('cfilter').value;
+   let price=document.getElementById('pra25').value;
+   let range=document.getElementById('sliderRange').value;
+    $.ajax({
+        url:'filter.php',
+        method:'POST',
+        data:{
+            pname:name,
+            price:price,
+            cfilter:category,
+            range:range
+},
+        dataType:'json',
+        success:function(res){
+
+
+                    res.forEach(element => {
+             products.push(element);
+            });
+            filteredProducts = [...products];
+     init();
+     
+        }
+    }); }
