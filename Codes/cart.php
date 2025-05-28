@@ -22,7 +22,7 @@ if ($res) {
         'qty'   =>$row['qty'],
     ];
 }
-        echo json_encode($data);
+     echo json_encode($data);
     } else {
         echo json_encode("Error fetching inserted data.");
     }

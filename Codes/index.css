@@ -15,6 +15,26 @@
             background-image:url('../images/home.jpeg');
             background-size:cover;
         }
+        #pra15{
+    height:auto;
+    width:200px;
+    margin:100px 0px 0px 400px;
+    padding:20px;
+    background-color:black;
+    border:5px solid black;
+}
+#pra15 form{
+    font-size: 25px;
+    font-weight:bold;
+    border-radius:30px;
+    text-align:center;
+    background-color:black;
+}
+#pra15 form label{
+    font-weight:bold;
+    font-size:25px;
+    color:white;
+}
         
         .bg-animation {
             position: absolute;
@@ -818,10 +838,26 @@
     display:flex;
     
 }
+#buydel{
+   height:50px;
+    width:100%;
+    display:flex 
+}
 #qtyadd button{
     margin:10px;
     height:30px;
     width:30px;
+    border-radius:50px;
+}
+#buydel button{
+    margin:10px;
+    height:30px;
+    width:30px;
+    border-radius:50px;
+}
+#buydel button img{
+    height:100%;
+    width:100%;
     border-radius:50px;
 }
 #qtyadd span{

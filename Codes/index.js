@@ -1,7 +1,9 @@
 
 let cart = [];
 let filteredProducts = [];
-let tc=0;
+let str;
+let tc=1;
+ toggleCart();
         
 function login() {
     setTimeout(() =>{
@@ -32,6 +34,9 @@ function home(){
 }
 function esewa(pid){
  window.location.href="esewa.php?pid="+ pid;
+ }
+ function esewa1(pid){
+ window.location.href="esewa1.php?pid="+ pid;
  }
  
  function display(){
@@ -71,24 +76,24 @@ document.getElementById("pra35").style.display="block";
 
 
 } 
-function addToCart(str){
-
-document.getElementById("pra35").style.display="block";
+function addToCart(productId) {
     $.ajax({
-        url:'cart.php',
-        method:'POST',
-        data:{pname:str},
-        dataType:'json',
-        success:function(data){
-           alert(data);
+        url: 'cart.php',
+        method: 'POST',
+        data: { pid: productId },
+        dataType: 'json',
+        success: function(res) {
             
-    
+                alert(`${res[0].name} added to the cart`);
+                toggleCart();
+                updateCartCount();
+           
+        },
+        error: function() {
+            alert('Error fetching product data.');
         }
-    })
-
-
-
-} 
+    });
+}
   function second1(){
 
 var current=document.getElementById("pra26").value;
@@ -181,11 +186,6 @@ let pn=data;
 })
     
 }
-function carthide(){
-
-document.getElementById("pra35").style.display="none";
-
-}
 const products=[];
 datafetch();
 function datafetch(){
@@ -198,10 +198,12 @@ $(document).ready(function(){
             res.forEach(element => {
              products.push(element);
             });
-            filteredProducts = [...products];
-     init();
-     
-        }
+            
+    filteredProducts = [...products];
+    init(); 
+
+
+}
     });
 });
 
@@ -262,39 +264,6 @@ $(document).ready(function(){
                 return { class: 'in-stock', text: `In Stock (${stock} available)` };
             }
         }
-
-        // Add product to cart
-        function addToCart(productId) {
-            product=[];
-            
-    $.ajax({
-        url: 'cart.php',
-        method: 'POST',
-        data: { pid: productId },
-        dataType: 'json',
-        success: function(res) {
-            product=res[0];
-            cart=[];
-            console.log(product.stock);
-            if (res.length > 0) {
-                if (product.stock > 0) {
-                    cart.push(product);
-                    updateCartCount();
-                    alert(`${product.name} added to the cart`);
-                } else {
-                    alert('Product is out of stock.');
-                }
-         } else {
-                alert('Product not found.');
-            }
-        },
-        error: function() {
-            alert('Error fetching product data.');
-         }
-    });
-}
-let str;
-
         // Update cart count
         function updateCartCount() {
             document.getElementById('cartCount').textContent = cart.length;
@@ -335,7 +304,7 @@ let str;
                                 <td><div id="qtyadd"> <button onclick="toggleCart(); increase(${cartItems[i].id});">➕</button>
                                 <span id="qtyspan-${cartItems[i].id}">${cartItems[i].qty}</span>
                                 <button onclick="decrease(${cartItems[i].id})">➖</button></div></td>
-                                <td>Here will be the delete and buy button</td>
+                                <td><div id="buydel"><Button onclick="esewa1(${cartItems[i].id})"><img src="../images/esewa.png" width="50px" height="50px"></Button><br><Button onclick="del(${cartItems[i].id})"><img src="../images/delete.jpg" width="50px" height="50px"></Button></div></td>
                             </tr>`;
                 }
                 str += '</tbody></table>';
@@ -404,6 +373,26 @@ function decrease(pid) {
             }
         });
    
+}
+function del(pid){
+   let productId=pid;
+    $.ajax({
+            url: 'del.php',
+            method: 'POST',
+            data: {
+                pid: productId,
+            },
+            dataType: 'json',
+            success: function(res) {
+                alert("Item removed from cart");
+                    toggleCart();
+                    cHideUnhide();
+                    updateCartCount();
+            },
+            error: function() {
+                alert('Error fetching product data.');
+            }
+        });
 }
 
 
