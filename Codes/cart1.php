@@ -1,16 +1,11 @@
 <?php
 include "db.php";
-$pid=$_POST['pid'];
-
-$query="insert into cart(id,qty)values($pid,1)";
-$res=$conn->query($query);
 $data=[];
-if ($res) {
-    $query1 = "SELECT *from cart inner join uploads on cart.id=uploads.id Where cart.id='$pid'";
-    $res1 = $conn->query($query1);
+    $query1 = "SELECT *from cart inner join uploads on cart.id=uploads.id";
+    $res = $conn->query($query1);
 
-    if($res1) {
-        while($row=$res1->fetch_assoc()){
+    if($res) {
+        while($row=$res->fetch_assoc()){
         $data[] = [
         'id' => $row['id'],
         'name' => $row['pname'],
@@ -26,9 +21,7 @@ if ($res) {
     } else {
         echo json_encode("Error fetching inserted data.");
     }
-} else {
-    echo json_encode("No data inserted");
-}
+
 
 $conn->close();
 ?>

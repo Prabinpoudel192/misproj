@@ -265,23 +265,26 @@ $(document).ready(function(){
 
         // Add product to cart
         function addToCart(productId) {
+            product=[];
+            
     $.ajax({
         url: 'cart.php',
         method: 'POST',
         data: { pid: productId },
         dataType: 'json',
         success: function(res) {
+            product=res[0];
+            cart=[];
+            console.log(product.stock);
             if (res.length > 0) {
-                res.forEach((product, i) => {
-                 console.log(product);
                 if (product.stock > 0) {
                     cart.push(product);
                     updateCartCount();
-                    alert(`${product.name} added to cart!`);
+                    alert(`${product.name} added to the cart`);
                 } else {
                     alert('Product is out of stock.');
                 }
-          });  } else {
+         } else {
                 alert('Product not found.');
             }
         },
@@ -290,6 +293,7 @@ $(document).ready(function(){
          }
     });
 }
+let str;
 
         // Update cart count
         function updateCartCount() {
@@ -298,50 +302,113 @@ $(document).ready(function(){
 
         // Toggle cart (placeholder function)
         function toggleCart() {
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-            } else {
+    product = [];
+    cart = []; // Make sure cart is reset before fetching
 
-
-                //alert alert this place is the place to customize cart>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    $.ajax({
+        url: 'cart1.php',
+        method: 'POST',
+        dataType: 'json',
+        success: function(res) {
+            if (res.length > 0) {
+                res.forEach((product, i) => {
+                    cart.push(product);
+                });
+                updateCartCount();
                 const cartItems = cart;
-let str = '<table border="2" class="cart-table">';
-
-// Correct header row: use <thead> with <tr> and <th> (not <td> inside <th>)
-str += `<thead>
-            <tr>
-                <th>Product-Name</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Quantity</th>
-                <th>Buy/Remove</th>
-            </tr>
-        </thead>`;
-
-str += '<tbody>';
-for (let i = 0; i < cartItems.length; i++) {
-    str += `<tr>
-                <td>${cartItems[i].name}</td>
-                <td>RS.${cartItems[i].price}</td>
-                <td><img src="${cartItems[i].image}" alt="Product Image"></td>
-                <td>Here will be the quantityadd button</td>
-                <td>Here will be the delete and buy button</td>
-            </tr>`;
-}
-str += '</tbody>';
-
-str += '</table>';
-if(tc%2==0){
-document.getElementsByClassName('cart-div')[0].style.display = "block";
-document.getElementsByClassName('cart-div')[0].innerHTML = str;
-tc=0;
-}else{
-document.getElementsByClassName('cart-div')[0].style.display = "none";
-}
-tc++;
+                str = '<table border="2" class="cart-table">';
+                str += `<thead>
+                            <tr>
+                                <th>Product-Name</th>
+                                <th>Price</th>
+                                <th>Image</th>
+                                <th>Quantity</th>
+                                <th>Buy/Remove</th>
+                            </tr>
+                        </thead>`;
+                str += '<tbody>';
+                for (let i = 0; i < cartItems.length; i++) {
+                    str += `<tr>
+                                <td>${cartItems[i].name}</td>
+                                <td>RS.${cartItems[i].price}</td>
+                                <td><img src="${cartItems[i].image}" alt="Product Image"></td>
+                                <td><div id="qtyadd"> <button onclick="toggleCart(); increase(${cartItems[i].id});">➕</button>
+                                <span id="qtyspan-${cartItems[i].id}">${cartItems[i].qty}</span>
+                                <button onclick="decrease(${cartItems[i].id})">➖</button></div></td>
+                                <td>Here will be the delete and buy button</td>
+                            </tr>`;
+                }
+                str += '</tbody></table>';
+           
+            } else {
+                alert('Product not found.');
             }
-            
+        },
+        error: function() {
+            alert('Error fetching product data.');
         }
+    });
+}
+function cHideUnhide(){
+     if (tc % 2 == 0) {
+                    document.getElementsByClassName('cart-div')[0].style.display = "none";
+                    tc = 0;
+                } else {
+                    document.getElementsByClassName('cart-div')[0].style.display = "block";
+                    document.getElementsByClassName('cart-div')[0].innerHTML = str;
+                    str="";
+                }
+                tc++;
+}
+//cart to add the qty by one unit per click
+function increase(pid) {
+   
+    let productId = pid;
+        $.ajax({
+            url: 'qtyinc.php',
+            method: 'POST',
+            data: {
+                pid: productId,
+            },
+            dataType: 'json',
+            success: function(res) {
+                if(res=="exit"){
+                alert(`Exceeds the stock limit`);
+                }else{
+                document.getElementById(`qtyspan-${pid}`).innerText = res;
+            }},
+            error: function() {
+                alert('Error fetching product data.');
+            }
+        });
+   
+}
+function decrease(pid) {
+   
+    let productId = pid;
+        $.ajax({
+            url: 'qtydec.php',
+            method: 'POST',
+            data: {
+                pid: productId,
+            },
+            dataType: 'json',
+            success: function(res) {
+               if(res=="exit"){
+                alert("Low on stock");
+               }else{
+                document.getElementById(`qtyspan-${pid}`).innerText = res;
+            }},
+            error: function() {
+                alert('Error fetching product data.');
+            }
+        });
+   
+}
+
+
+            
+        
 
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {

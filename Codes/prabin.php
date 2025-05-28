@@ -55,7 +55,7 @@
                     <div class="filter-icon"></div>
                     
                 </div>
-                <div class="cart-container" onclick="toggleCart()">
+                <div class="cart-container" onclick="toggleCart(); cHideUnhide();">
                     <div class="cart-icon"></div>
                     <div class="cart-count" id="cartCount">0</div>
                 </div>
