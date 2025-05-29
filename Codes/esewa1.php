@@ -53,15 +53,15 @@ if (isset($_GET['pid'])) {
     <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
  <label>Amount:</label><br><input type="text" id="amount" name="amount" value="<?php echo $pprice ?>" required>
  <label>Tax-Amount:</label><br><input type="text" id="tax_amount" name="tax_amount" value ="<?php echo $tax ?>" required>
- <input type="text" id="transaction_uuid" name="transaction_uuid" value="<?php echo $tranuid?>" required>
- <input type="text" id="product_code" name="product_code" value ="EPAYTEST" required>
+ <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $tranuid?>" required>
+ <input type="hidden" id="product_code" name="product_code" value ="EPAYTEST" required>
  <label>Service Charge:</label><br><input type="text" id="product_service_charge" name="product_service_charge" value="<?php echo $serchar ?>" required>
  <label>Delivery Charge:</label><br><input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
  <label>Total-Amount:</label><br><input type="text" id="total_amount" name="total_amount" value="<?php echo $total ?>" required>
- <input type="text" id="success_url" name="success_url" value="https://localhost/projectII/Codes/sucess.php" required>
- <input type="text" id="failure_url" name="failure_url" value="https://localhost/projectII/Codes/supermain.php" required>
- <input type="text" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" required>
- <input type="text" id="signature" name="signature" value="<?php echo $signature ?>" required>
+ <input type="hidden" id="success_url" name="success_url" value="https://localhost/projectII/Codes/sucess.php" required>
+ <input type="hidden" id="failure_url" name="failure_url" value="https://localhost/projectII/Codes/supermain.php" required>
+ <input type="hidden" id="signed_field_names" name="signed_field_names" value="<?php echo $signed_field_names ?>" required>
+ <input type="hidden" id="signature" name="signature" value="<?php echo $signature ?>" required>
  <input value="Submit" type="submit" style="border-radius:30px;">
  </form></div> 
 </body>

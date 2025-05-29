@@ -35,6 +35,24 @@
     font-size:25px;
     color:white;
 }
+/* star rating css properties */
+.stars{
+    height:auto;
+    width:100%;
+    display: block;
+     text-align: center;
+}
+.star {
+  color: lightgray;
+  font-size: 2rem;
+  cursor: pointer;
+  align-items:center;
+}
+.star.selected {
+  color: gold;
+}
+
+    /* star rating css properties ends here */
         
         .bg-animation {
             position: absolute;
