@@ -1,3 +1,77 @@
+<?php
+    session_start();
+include "db.php";
+if(isset($_POST['post1'])){
+    $uname=$_POST['uname'];
+    $pwd=$_POST['pwd'];
+        $sql="select acc from login where uname='$uname' and pwd='$pwd'";
+        $r=$conn->query($sql);
+        if($r && $r->num_rows > 0){ 
+            $row = $r->fetch_assoc(); 
+            $acc = $row['acc']; 
+            $_SESSION['uname'] = $uname;
+            if($acc == 1){
+               header("Location:prabin.php");
+               exit();
+            }else if($acc == 2){
+                header("Location:prabin.php");
+               exit();
+            }else if($acc == 3){
+              header("Location: guestmain.php"); 
+               exit();
+            }
+        }else{
+         echo "<script>alert('User not found')</script>";
+        }
+    }
+
+
+
+
+if(isset($_POST['post2'])){
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $uname=$_POST['uname'];
+    $pwd=$_POST['pwd'];
+    $kacc=$_POST['acc'];
+    if($kacc=="admin"){
+        $acc=1;
+    }else if($kacc=="su"){
+        $acc=2;
+    }else if($kacc=="gu"){
+        $acc=3;
+    }
+    if($conn->connect_error){
+        die("Connection Error");
+    }else{
+        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        if($conn->query($sql) === TRUE){  
+            header("Location: index.php"); 
+        }else{
+            echo "<script>alert('Error in registration')</script>"; 
+        }
+    }
+}
+if(isset($_POST['post3'])){
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $uname=$_POST['uname'];
+    $pwd=$_POST['pwd'];
+    $acc=1;
+    if($conn->connect_error){
+        die("Connection Error");
+    }else{
+        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        if($conn->query($sql) === TRUE){  
+            header("Location: index.php"); 
+        }else{
+            echo "<script>alert('Error in registration')</script>"; 
+        }
+    }
+}
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,73 +233,4 @@ document.addEventListener("mousemove", function () {
 <script defer src="index.js"></script>
 </html>
 
-<?php
-include "db.php";
-if(isset($_POST['post1'])){
-    $uname=$_POST['uname'];
-    $pwd=$_POST['pwd'];
-        $sql="select acc from login where uname='$uname' and pwd='$pwd'";
-        $r=$conn->query($sql);
-        if($r && $r->num_rows > 0){ 
-            $row = $r->fetch_assoc(); 
-            $acc = $row['acc']; 
-            if($acc == 1){
-              echo "<script> window.location.href = 'adminmain.php';</script>";
-              exit();
-            }else if($acc == 2){
-                echo "<script> window.location.href = 'prabin.php';</script>";
-               exit();
-            }else if($acc == 3){
-               echo "<script> window.location.href = 'guestmain.php';</script>";
-               exit();
-            }
-        }else{
-            echo "<script>alert('User not found')</script>"; 
-        }
-    }
 
-
-
-
-if(isset($_POST['post2'])){
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $uname=$_POST['uname'];
-    $pwd=$_POST['pwd'];
-    $kacc=$_POST['acc'];
-    if($kacc=="admin"){
-        $acc=1;
-    }else if($kacc=="su"){
-        $acc=2;
-    }else if($kacc=="gu"){
-        $acc=3;
-    }
-    if($conn->connect_error){
-        die("Connection Error");
-    }else{
-        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
-        if($conn->query($sql) === TRUE){  
-            header("Location: index.php"); 
-        }else{
-            echo "<script>alert('Error in registration')</script>"; 
-        }
-    }
-}
-if(isset($_POST['post3'])){
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $uname=$_POST['uname'];
-    $pwd=$_POST['pwd'];
-    $acc=1;
-    if($conn->connect_error){
-        die("Connection Error");
-    }else{
-        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
-        if($conn->query($sql) === TRUE){  
-            header("Location: index.php"); 
-        }else{
-            echo "<script>alert('Error in registration')</script>"; 
-        }
-    }
-}
-?>

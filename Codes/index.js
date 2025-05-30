@@ -214,6 +214,7 @@ function datafetch() {
 function init() {
     displayProducts(filteredProducts);
     updateCartCount();
+     starrating();
 }
 
 // Display products in grid
@@ -228,19 +229,125 @@ function displayProducts(productsToShow) {
 }
 //Star rating function starts here
 
-function rating(pid,num){
-    alert(`The values are ${pid} and ${num}`);
+function rating(productId,number,username){
+        $.ajax({
+        url: 'star.php',
+        method: 'POST',
+        data: {
+            pid: productId,
+            qty:number,
+            uname:username
+        },
+        dataType: 'json',
+        success: function (res) {
+                    let num=res.cstar;
+                    let pid=res.pid;
+                    if(num===null){
+                      exit(0);
+                    }
+               if(num==1){
+        document.getElementById(`star1${pid}`).style.color="gold";
+        document.getElementById(`star2${pid}`).style.color="lightgray";
+        document.getElementById(`star3${pid}`).style.color="lightgray";
+        document.getElementById(`star4${pid}`).style.color="lightgray";
+        document.getElementById(`star5${pid}`).style.color="lightgray";
+    }if(num==2){
+        document.getElementById(`star1${pid}`).style.color="gold";
+        document.getElementById(`star2${pid}`).style.color="gold";
+        document.getElementById(`star3${pid}`).style.color="lightgray";
+        document.getElementById(`star4${pid}`).style.color="lightgray";
+        document.getElementById(`star5${pid}`).style.color="lightgray";
+    }if(num==3){
+       document.getElementById(`star1${pid}`).style.color="gold";
+        document.getElementById(`star2${pid}`).style.color="gold";
+        document.getElementById(`star3${pid}`).style.color="gold";
+        document.getElementById(`star4${pid}`).style.color="lightgray";
+        document.getElementById(`star5${pid}`).style.color="lightgray";
+    }if(num==4){
+        document.getElementById(`star1${pid}`).style.color="gold";
+        document.getElementById(`star2${pid}`).style.color="gold";
+        document.getElementById(`star3${pid}`).style.color="gold";
+        document.getElementById(`star4${pid}`).style.color="gold";
+        document.getElementById(`star5${pid}`).style.color="lightgray";
+    }if(num==5){
+        document.getElementById(`star1${pid}`).style.color="gold";
+        document.getElementById(`star2${pid}`).style.color="gold";
+        document.getElementById(`star3${pid}`).style.color="gold";
+        document.getElementById(`star4${pid}`).style.color="gold";
+        document.getElementById(`star5${pid}`).style.color="gold";
+     }
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
 }
 
 //star rating function ends here
+//star rating initialization function starts here
+function starrating(){
+   
+    $.ajax({
+        url: 'star1.php',
+        method: 'GET',      
+        dataType: 'json',
+        success: function (res) {
+            res.forEach((item,i) => {
+                let k=parseInt(item.cstar);
+               console.log(item.pid);
+             if(k==1){
+        document.getElementById(`star1${item.pid}`).style.color="gold";
+        document.getElementById(`star2${item.pid}`).style.color="lightgray";
+        document.getElementById(`star3${item.pid}`).style.color="lightgray";
+        document.getElementById(`star4${item.pid}`).style.color="lightgray";
+        document.getElementById(`star5${item.pid}`).style.color="lightgray";
+    }if(k==2){
+        document.getElementById(`star1${item.pid}`).style.color="gold";
+        document.getElementById(`star2${item.pid}`).style.color="gold";
+        document.getElementById(`star3${item.pid}`).style.color="lightgray";
+        document.getElementById(`star4${item.pid}`).style.color="lightgray";
+        document.getElementById(`star5${item.pid}`).style.color="lightgray";
+    }if(k==3){
+        document.getElementById(`star1${item.pid}`).style.color="gold";
+        document.getElementById(`star2${item.pid}`).style.color="gold";
+        document.getElementById(`star3${item.pid}`).style.color="gold";
+        document.getElementById(`star4${item.pid}`).style.color="lightgray";
+        document.getElementById(`star5${item.pid}`).style.color="lightgray";
+    }if(k==4){
+        document.getElementById(`star1${item.pid}`).style.color="gold";
+        document.getElementById(`star2${item.pid}`).style.color="gold";
+        document.getElementById(`star3${item.pid}`).style.color="gold";
+        document.getElementById(`star4${item.pid}`).style.color="gold";
+        document.getElementById(`star5${item.pid}`).style.color="lightgray";
+    }if(k==5){
+        document.getElementById(`star1${item.pid}`).style.color="gold";
+        document.getElementById(`star2${item.pid}`).style.color="gold";
+        document.getElementById(`star3${item.pid}`).style.color="gold";
+        document.getElementById(`star4${item.pid}`).style.color="gold";
+        document.getElementById(`star5${item.pid}`).style.color="gold";
+     }
+
+
+        });
+                
+            
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
+}
+
+
+//star rating initialization function ends here
 // Create product card element
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
 
     const stockStatus = getStockStatus(product.stock);
-
     card.innerHTML = `
+   
                 <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:85%; height:100%;"></div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
@@ -258,11 +365,11 @@ function createProductCard(product) {
                     <div class="stock-status ${stockStatus.class}">${stockStatus.text}</div>
                     <div class="stars" >
                     <h6>Please Rate this product<br></h6>
-                        <span class="star" data-index="1"  onclick="rating(${product.id},1)">&#9733;</span>
-                        <span class="star" data-index="2"  onclick="rating(${product.id},2)">&#9733;</span>
-                        <span class="star" data-index="3"  onclick="rating(${product.id},3)">&#9733;</span>
-                        <span class="star" data-index="4"  onclick="rating(${product.id},4)">&#9733;</span>
-                        <span class="star" data-index="5"  onclick="rating(${product.id},5)">&#9733;</span>
+                        <span class="star" id="star1${product.id}"   onclick="rating('${product.id}',1,'${uname}')">&#9733;</span>
+                        <span class="star" id="star2${product.id}"   onclick="rating('${product.id}',2,'${uname}')">&#9733;</span>
+                        <span class="star" id="star3${product.id}"   onclick="rating('${product.id}',3,'${uname}')">&#9733;</span>
+                        <span class="star" id="star4${product.id}"   onclick="rating('${product.id}',4,'${uname}')">&#9733;</span>
+                        <span class="star" id="star5${product.id}"   onclick="rating('${product.id}',5,'${uname}')">&#9733;</span>
                              </div>
                 </div>
             `;
@@ -288,7 +395,7 @@ function updateCartCount() {
 // Toggle cart (placeholder function)
 function toggleCart() {
     product = [];
-    cart = []; // Make sure cart is reset before fetching
+    cart = []; 
 
     $.ajax({
         url: 'cart1.php',
@@ -326,7 +433,7 @@ function toggleCart() {
                 str += '</tbody></table>';
 
             } else {
-                alert('Product not found.');
+                alert('The cart is empty');
             }
         },
         error: function () {
@@ -402,10 +509,10 @@ function del(pid) {
         },
         dataType: 'json',
         success: function (res) {
-            alert("Item removed from cart");
+             cHideUnhide();
             toggleCart();
-            cHideUnhide();
             updateCartCount();
+            alert("Item removed from cart");
         },
         error: function () {
             alert('Error fetching product data.');

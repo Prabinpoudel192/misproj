@@ -1,3 +1,7 @@
+<?php
+session_start();
+$uname=$_SESSION['uname'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,6 +129,9 @@
             <!-- Products will be dynamically loaded here -->
         </div>
     </div>
+    <script>
+    const uname = <?php echo json_encode($uname); ?>;
+</script>
     <script defer src="../jquery/jquery.js"></script>
     <script defer src="index.js"></script>
     
