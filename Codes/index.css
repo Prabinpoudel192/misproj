@@ -202,11 +202,13 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             width: 100%;
-            max-width: 420px;
+            max-width: 500px;
+            height:100%;
+            max-height:80vh;
             display: none;
             animation: formSlideUp 0.6s ease-out;
             position: relative;
-            overflow: hidden;
+            overflow: scroll;
         }
 
         .form-container::before {
@@ -289,6 +291,7 @@
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.9);
             color: #333;
+            text-align:center;
         }
 
         .form-input:focus {
@@ -804,7 +807,7 @@
   border-radius:15px;
   box-shadow:#667eea;
 }
- .cart-div {
+ .cart-div{
     height:auto;                
     width: 800px;
     background-color: rgba(100, 150, 50, 0.8);
@@ -819,6 +822,27 @@
     color:#ff4757;
     box-shadow: 4px 4px 10px #764ba2;
     overflow:hidden scroll;
+}
+.recommendation-div{
+    height:600px;                
+    width: 800px;
+    background-color: rgba(255, 150, 50, 0.8);
+    border: 3px solid black;
+    position: fixed;
+    margin-top:20px;
+    margin-left: 100px;
+    padding: 30px;
+    backdrop-filter: blur(5px); 
+    z-index:3;
+    border-radius:10px;
+    color:black;
+    box-shadow: 4px 4px 10px #764ba2;
+    overflow:hidden scroll;   
+    display:none;
+}
+.recommendation-grid{
+    height:auto;
+    width:auto;
 }
 .cart-table {
     width: 100%;
@@ -885,3 +909,57 @@
     margin-top:10px;
     
 }
+.form-textarea {
+            min-height: 80px;
+            resize: vertical;
+            font-family: inherit;
+            line-height: 1.4;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            width: 100%;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+        
+        .radio-group-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        /* Gender radio group specific styling to match existing design */
+        .gender-group {
+            display: flex;
+            gap: 15px;
+            margin: 25px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 480px) {
+            .form-textarea {
+                min-height: 60px;
+            }
+            
+            .gender-group {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }

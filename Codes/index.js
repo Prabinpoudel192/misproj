@@ -215,6 +215,7 @@ function init() {
     displayProducts(filteredProducts);
     updateCartCount();
      starrating();
+     recommendation();
 }
 
 // Display products in grid
@@ -391,7 +392,46 @@ function getStockStatus(stock) {
 function updateCartCount() {
     document.getElementById('cartCount').textContent = cart.length;
 }
+//Recommendation div logic starts here
+function recommendation(){
+       $.ajax({
+        url: 'recommendation.php',
+        method: 'POST',
+        dataType: 'json',
+        success: function (res) {
+          const recommendationDiv = document.getElementsByClassName("recommendation-div")[0];
+            
+            if (res.length > 0) {
+                recommendationDiv.innerHTML = '';
+                const recommendationContainer = document.createElement('div');
+                recommendationContainer.className = 'recommendation-container';
+                recommendationContainer.innerHTML = '<h3 style="text-align: center; margin-bottom: 20px; color: #333;">Recommended Products</h3>';
+                const recommendationGrid = document.createElement('div');
+                recommendationGrid.className = 'recommendation-grid';
+                recommendationGrid.style.display = 'grid';
+                recommendationGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+                recommendationGrid.style.gap = '20px';
+                recommendationGrid.style.padding = '20px';
+                res.forEach(product => {
+                    const productCard = createProductCard(product);
+                    recommendationGrid.appendChild(productCard);
+                });
+                recommendationContainer.appendChild(recommendationGrid);
+                recommendationDiv.appendChild(recommendationContainer);
+                recommendationDiv.style.display = "flex";
+                setTimeout(() => {
+                    starrating();
+                }, 100);
+            }
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
 
+}
+
+//Recommendation div logic ends here
 // Toggle cart (placeholder function)
 function toggleCart() {
     product = [];
@@ -580,7 +620,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function mainpage() {
-    window.location.href = "index.php";
+    let result = confirm("Confirm Logout?");
+
+if (result) {
+ window.location.href = "index.php";
+} else {
+ exit(0);
+}
+    
 }
 let j = 0;
 function dispfilter() {

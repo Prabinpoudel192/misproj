@@ -119,6 +119,10 @@ $uname=$_SESSION['uname'];
     <div class="cart-div">
 
     </div>
+    <div class="recommendation-div">
+        <span><h2>Recommendation For You.</h2></span><br><hr>
+
+    </div>
         <div class="page-header">
             <h1 class="page-title">Product Catalog</h1>
             <p class="page-subtitle">Discover our wide range of quality products</p>

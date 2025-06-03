@@ -174,37 +174,65 @@ document.addEventListener("mousemove", function () {
         </div>
 
         <!-- Signup Form -->
-        <div class="form-container" id="pra5">
-            <h2 class="form-title icon-signup">
-                Join Us
-            </h2>
-            <p class="form-subtitle">Create your account</p>
-            <form action="" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="First Name" name="fname" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Username" name="uname" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-input" placeholder="Password" name="pwd" required>
-                </div>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" name="acc" value="su" id="su" required>
-                        <label for="su">Super User</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="acc" value="gu" id="gu" required>
-                        <label for="gu">Guest User</label>
-                    </div>
-                </div>
-                <input type="submit" value="Create Account" name="post2" class="submit-btn">
-            </form>
+         
+<div class="form-container" id="pra5">
+         <h2 class="form-title icon-signup">
+        Join Us
+    </h2>
+    <p class="form-subtitle">Create your account</p>
+    <form action="" method="post">
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="First Name" name="fname" required>
         </div>
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="Middle Name" name="mname">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
+        </div>
+        <div class="form-group">
+            <textarea class="form-input form-textarea" placeholder="Address" name="address" required></textarea>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-input" placeholder="Email" name="email" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-input" placeholder="Mobile Number" name="mobile" required>
+        </div>
+        <div class="radio-group gender-group">
+            <span class="radio-group-label">Gender:</span>
+            <div class="radio-item">
+                <input type="radio" name="gender" value="male" id="male" required>
+                <label for="male">Male</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" name="gender" value="female" id="female" required>
+                <label for="female">Female</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" name="gender" value="other" id="other" required>
+                <label for="other">Other</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="Username" name="uname" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-input" placeholder="Password" name="pwd" required>
+        </div>
+        <div class="radio-group">
+            <div class="radio-item">
+                <input type="radio" name="acc" value="su" id="su" required>
+                <label for="su">Super User</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" name="acc" value="gu" id="gu" required>
+                <label for="gu">Guest User</label>
+            </div>
+        </div>
+        <input type="submit" value="Create Account" name="post2" class="submit-btn">
+    </form>
+</div></div>
 
         <!-- Admin Form -->
         <div class="form-container" id="pra10">
