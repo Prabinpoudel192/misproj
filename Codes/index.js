@@ -405,7 +405,33 @@ function recommendation(){
                 recommendationDiv.innerHTML = '';
                 const recommendationContainer = document.createElement('div');
                 recommendationContainer.className = 'recommendation-container';
-                recommendationContainer.innerHTML = '<h3 style="text-align: center; margin-bottom: 20px; color: #333;">Recommended Products</h3>';
+               recommendationContainer.innerHTML = `
+                    <div style="
+                        display: flex; 
+                        justify-content: space-between; 
+                        align-items: center; 
+                        padding: 10px 20px; 
+                        background-color: inherit;
+                        color: #333;
+                    ">
+                        <h3 style="margin: 0;">Recommended Products</h3>
+                        <div 
+                            onclick="document.getElementsByClassName('recommendation-div')[0].style.display='none'" 
+                            style="
+                                height: 50px; 
+                                width: 50px; 
+                                border-radius: 50%; 
+                                overflow: hidden; 
+                                cursor: pointer;
+                                background-color: #eee;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            ">
+                            <img src="../images/close.jpg" style="height: 100%; width: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+                `;
                 const recommendationGrid = document.createElement('div');
                 recommendationGrid.className = 'recommendation-grid';
                 recommendationGrid.style.display = 'grid';
