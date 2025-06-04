@@ -471,7 +471,7 @@
         }
 
         /* Hide forms initially */
-        #pra4, #pra5, #pra10 {
+        #pra4, #pra5,#pra10{
             display: none;
         }
         

@@ -11,13 +11,10 @@ if(isset($_POST['post1'])){
             $acc = $row['acc']; 
             $_SESSION['uname'] = $uname;
             if($acc == 1){
-               header("Location:prabin.php");
+               header("Location:adminmain.php");
                exit();
             }else if($acc == 2){
                 header("Location:prabin.php");
-               exit();
-            }else if($acc == 3){
-              header("Location: guestmain.php"); 
                exit();
             }
         }else{
@@ -29,22 +26,20 @@ if(isset($_POST['post1'])){
 
 
 if(isset($_POST['post2'])){
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $uname=$_POST['uname'];
-    $pwd=$_POST['pwd'];
-    $kacc=$_POST['acc'];
-    if($kacc=="admin"){
-        $acc=1;
-    }else if($kacc=="su"){
-        $acc=2;
-    }else if($kacc=="gu"){
-        $acc=3;
-    }
+    $fname=$_POST['sfname'];
+    $mname=$_POST['smname'];
+    $lname=$_POST['slname'];
+    $address=$_POST['saddress'];
+    $email=$_POST['semail'];
+    $mobile=$_POST['smobile'];
+    $gender=$_POST['sgender'];
+    $uname=$_POST['suname'];
+    $pwd=$_POST['spwd'];
+    $acc=2;
     if($conn->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc)";
         if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
@@ -53,15 +48,21 @@ if(isset($_POST['post2'])){
     }
 }
 if(isset($_POST['post3'])){
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $uname=$_POST['uname'];
-    $pwd=$_POST['pwd'];
+    $fname=$_POST['afname'];
+    $mname=$_POST['amname'];
+    $lname=$_POST['alname'];
+    $address=$_POST['aaddress'];
+    $email=$_POST['aemail'];
+    $mobile=$_POST['amobile'];
+    $gender=$_POST['agender'];
+    $uname=$_POST['auname'];
+    $pwd=$_POST['apwd'];
     $acc=1;
     if($conn->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into login(fname,lname,uname,pwd,acc) values('$fname','$lname','$uname','$pwd','$acc')";
+        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc)";
+       echo "<script>alert(\"$sql\");</script>";
         if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
@@ -72,6 +73,8 @@ if(isset($_POST['post3'])){
 $conn->close();
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,18 +84,18 @@ $conn->close();
     <link rel="stylesheet" href="index.css">
     <script>
         let visibledisp=false;
-document.addEventListener("mousemove", function () {
-    
-    if(!visibledisp){
-    document.getElementById("disp").style.display = "block";
-    visibledisp=true;
-    
-    setTimeout(()=>{
-        document.getElementById("disp").style.display="none";
-        visibledisp=false;
-    },8000);
-}});
-</script>
+        document.addEventListener("mousemove", function () {
+            if(!visibledisp){
+                document.getElementById("disp").style.display = "block";
+                visibledisp=true;
+                
+                setTimeout(()=>{
+                    document.getElementById("disp").style.display="none";
+                    visibledisp=false;
+                },8000);
+            }
+        });
+        </script>
     <title>BUYMART MANAGEMENT SYSTEM</title>
 </head>
 <body>
@@ -127,6 +130,20 @@ document.addEventListener("mousemove", function () {
             z-index: -1;
         } 
         
+        /* Add styles for message divs */
+        [id^="msg"] {
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .welcome-screen {
+            display: block;
+        }
     </style>
 
     <!-- Animated Background -->
@@ -174,91 +191,137 @@ document.addEventListener("mousemove", function () {
         </div>
 
         <!-- Signup Form -->
-         
-<div class="form-container" id="pra5">
-         <h2 class="form-title icon-signup">
-        Join Us
-    </h2>
-    <p class="form-subtitle">Create your account</p>
-    <form action="" method="post">
-        <div class="form-group">
-            <input type="text" class="form-input" placeholder="First Name" name="fname" required>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-input" placeholder="Middle Name" name="mname">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
-        </div>
-        <div class="form-group">
-            <textarea class="form-input form-textarea" placeholder="Address" name="address" required></textarea>
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-input" placeholder="Email" name="email" required>
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-input" placeholder="Mobile Number" name="mobile" required>
-        </div>
-        <div class="radio-group gender-group">
-            <span class="radio-group-label">Gender:</span>
-            <div class="radio-item">
-                <input type="radio" name="gender" value="male" id="male" required>
-                <label for="male">Male</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" name="gender" value="female" id="female" required>
-                <label for="female">Female</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" name="gender" value="other" id="other" required>
-                <label for="other">Other</label>
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-input" placeholder="Username" name="uname" required>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-input" placeholder="Password" name="pwd" required>
-        </div>
-        <div class="radio-group">
-            <div class="radio-item">
-                <input type="radio" name="acc" value="su" id="su" required>
-                <label for="su">Super User</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" name="acc" value="gu" id="gu" required>
-                <label for="gu">Guest User</label>
-            </div>
-        </div>
-        <input type="submit" value="Create Account" name="post2" class="submit-btn">
-    </form>
-</div></div>
-
-        <!-- Admin Form -->
-        <div class="form-container" id="pra10">
-            <h2 class="form-title icon-admin">
-                Admin Access
+        <div class="form-container" id="pra5">
+            <h2 class="form-title icon-signup">
+                Join Us
             </h2>
-            <p class="form-subtitle">Administrator registration</p>
-            <form action="" method="post">
+            <p class="form-subtitle">Create your account</p>
+            <form onsubmit="return validation()" action="index.php" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="First Name" name="fname" required>
+                    <input type="text" class="form-input" placeholder="First Name" name="sfname" required>
+                    <div id="msg1"></div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Last Name" name="lname" required>
+                    <input type="text" class="form-input" placeholder="Middle Name" name="smname">
+                    <div id="msg2"></div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Username" name="uname" required>
+                    <input type="text" class="form-input" placeholder="Last Name" name="slname" required>
+                    <div id="msg3"></div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-input" placeholder="Password" name="pwd" required>
+                    <textarea class="form-input form-textarea" placeholder="Address" name="saddress" required></textarea>
+                    <div id="msg5"></div>
                 </div>
-                <input type="submit" value="Register Admin" name="post3" class="submit-btn">
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email" name="semail" required>
+                    <div id="msg7"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-input" placeholder="Mobile Number" name="smobile" required>
+                    <div id="msg4"></div>
+                </div>
+                <div class="radio-group gender-group">
+                    <span class="radio-group-label">Gender:</span>
+                    <div class="radio-item">
+                        <input type="radio" name="sgender" value="m" id="male" required>
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="sgender" value="f" id="female" required>
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="sgender" value="o" id="other" required>
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Username" name="suname" required>
+                    <div id="msg6"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Password" name="spwd" required>
+                    <div id="msg8"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Confirm Password" name="spwd1" required>
+                    <div id="msg9"></div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="sterms" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions</label>
+                </div>
+                <input type="submit" value="Create Account" name="post2" class="submit-btn">
             </form>
         </div>
-    </div>
+
+        <!-- Admin Form -->
+          <div class="form-container" id="pra10">
+            <h2 class="form-title icon-signup">
+                Admin Access
+            </h2>
+            <p class="form-subtitle">Create your Admin account</p>
+            <form onsubmit="return validation1()" action="" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="First Name" name="afname" required>
+                    <div id="msg11"></div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Middle Name" name="amname">
+                    <div id="msg12"></div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Last Name" name="alname" required>
+                    <div id="msg13"></div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input form-textarea" placeholder="Address" name="aaddress" required></textarea>
+                    <div id="msg15"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email" name="aemail" required>
+                    <div id="msg17"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-input" placeholder="Mobile Number" name="amobile" required>
+                    <div id="msg14"></div>
+                </div>
+                <div class="radio-group gender-group">
+                    <span class="radio-group-label">Gender:</span>
+                    <div class="radio-item">
+                        <input type="radio" name="agender" value="m" id="male" required>
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="agender" value="f" id="female" required>
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="agender" value="o" id="other" required>
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Username" name="auname" required>
+                    <div id="msg16"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Password" name="apwd" required>
+                    <div id="msg18"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" placeholder="Confirm Password" name="apwd1" required>
+                    <div id="msg19"></div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" name="aterms" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions</label>
+                </div>
+                <input type="submit" value="Create Account" name="post3" class="submit-btn">
+            </form>
+        </div>
+      
+    <script defer src="index.js"></script>
 </body>
-<script defer src="index.js"></script>
 </html>
-
-

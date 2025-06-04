@@ -1,12 +1,6 @@
 <?php
-$con=new mysqli("localhost","root","","projectII");
-if($con->connect_error){
-    die("No connection.");
-}else{
-    $sql="select *from uploads";
-    $ra=$con->query($sql);
-}
-
+session_start();
+$uname=$_SESSION['uname'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,57 +8,136 @@ if($con->connect_error){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Admin Main</title>
-    <link rel="stylesheet" href="bootstrap-5.3.4-dist/css/bootstrap.min.css">
+    <style>
+    
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+
+
+    </style>
+    <title>SuperMain</title>
+    
 </head>
 <body>
-    <div id="pra6" style="z-index:2; margin:-5px 0px 10px 0px;">
-        <ul>
-        <li><a href="index.php"><div style="position:relative; margin:5px 10px 100px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/logout.png'); background-size:cover;">
-        </div></a></li>
-        <li><a href="upload.php"><div style="position:relative; margin:5px 10px 10px 10px;border-radius:20px; height:55px; width:80px; border:2px solid green;  background-image:url('images/upload.jpg'); background-size:cover;">
-        </div></a></li>
-    </ul></div>
-    <?php
-      echo "<div class='container bg-dark bg-gradient' style='width:900px; z-index:1; height:100vh; overflow-y:scroll; background-color:#a8e6ce !important;'>"; 
-    while($row=$ra->fetch_assoc()){
-     $pname=$row['pname'];
-     $pprice=$row['pprice'];
-     $pdes=$row['pdes'];
-     $fname=$row['fname'];
- echo "<div style='height:auto; width:auto; background-color:#fff;z-index:1; position:relative; margin-top:100px;'>";
-   //display components starts here
-   echo "<div class='container-lg' style='margin-top:30px; margin-bottom:20px; background-color:#000;border-radius:25px;'>
-   <div class='container-fluid row' style='
-   z-index:1;
-   position:relative; 
-   margin:5px;
-   border-radius:20px; 
-   height:500px;
-   width:auto;
-box-sizing:border-box;
-border:5px solid purple;
-background-image:url(\"$fname\");
-background-size:100%;
-background-repeat:no-repeat;
-border-radius:15px;'></div>
-   <div class='container-md' id='pra13' style='z-index:1;position:relative; margin:0px; border-radius:20px; height:180px;width:auto; '>  
-   <h3 style='text-align:center; font-weight:bold;'>$pname</h3>
-       <h5 style='font-weight:Bold; margin:10px;'>
-          Price:".$pprice."<br>
-          Description:".$pdes."<br>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+           
+</div>
+            
+            <div class="nav-center">
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search products..." id="searchInput">
+                </div>
+                
+                <select class="filter-dropdown" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="books">Books and Stationary</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="pet">Pets</option>
+                    <option value="kids">Kids</option>
+                </select>
+            </div>
+            
+            <div class="nav-right">
+                    <div class="filter-container" onclick="dispfilter()">
+                    <div class="filter-icon"></div>
+                    
+                </div>
+                <div class="cart-container" onclick="toggleCart(); cHideUnhide();">
+                    <div class="cart-icon"></div>
+                    <div class="cart-count" id="cartCount">0</div>
+                </div>
+                <!-- This portion is for upload -->
+                <div class="upload-container" onclick="upload()">
+                    <div class="upload-icon"></div>
+                    
+                </div>
+                <!-- This portion is for logout -->
+                <div class="logout-container" onclick="mainpage()">
+                    <div class="logout-icon"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
 
-       </h5>
-   </div>
+    <!-- Main Content -->
+    <div class="container">
+         <div class="filter-div">     
+   <form action="" method="post" >
+    <input type="text" id="pname" placeholder="Enter Product Name"><br>
+    <select  id="cfilter">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="books">Books and Stationary</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="pet">Pets</option>
+                    <option value="kids">Kids</option>
+                </select>
+    <label>Price:</label>
+    <select id="pra25" name="price" onchange="second()"required>
+    <option value="">-- price --</option>
+    <option value="high">High</option>
+    <option value="low">Low</option>
+  </select>
+  
+  <label>To:</label>
+<select id="pra26" name="price1" onchange="second1()" required>
+    <option value="">-- price --</option>
+    <option value="high1">High</option>
+    <option value="low1">Low</option>
+  </select>
 
-</div></div>";
-//display components ends here
-    }
-    echo "</div>";
-    ?>
-    <script src="bootstrap-5.3.4-dist/js/bootstrap.min.js"></script>
+
+    <div class="rangeslider">
+        <input type="range" min="1" max="150000" value="1" onchange="change()" id="sliderRange" name="range">
+        <p>Price Range: <span id="demo">1</span></p>
+    </div>
+  <input type="button" value="filter" onclick="sortFilter()" style="margin-Top:100px;">
+
+   </form>  
+    </div>
+    <div class="cart-div">
+
+    </div>
+    <div class="recommendation-div">
+        <span><h2>Recommendation For You.</h2></span><br><hr>
+
+    </div>
+        <div class="page-header">
+            <h1 class="page-title">Product Catalog</h1>
+            <p class="page-subtitle">Discover our wide range of quality products</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+    <script>
+    const uname = <?php echo json_encode($uname); ?>;
+</script>
+    <script defer src="../jquery/jquery.js"></script>
+    <script defer src="index.js"></script>
+    
 </body>
 </html>
-
-
