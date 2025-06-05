@@ -4,16 +4,17 @@ include "db.php";
 if(isset($_POST['post1'])){
     $uname=$_POST['uname'];
     $pwd=$_POST['pwd'];
-        $sql="select acc from login where uname='$uname' and pwd='$pwd'";
+        $sql="select acc,status from login where uname='$uname' and pwd='$pwd'";
         $r=$conn->query($sql);
         if($r && $r->num_rows > 0){ 
             $row = $r->fetch_assoc(); 
             $acc = $row['acc']; 
+            $status=$row['status'];
             $_SESSION['uname'] = $uname;
-            if($acc == 1){
+            if($acc == 1 && $status=="active"){
                header("Location:adminmain.php");
                exit();
-            }else if($acc == 2){
+            }else if($acc == 2 && $status=="active"){
                 header("Location:prabin.php");
                exit();
             }
@@ -39,7 +40,7 @@ if(isset($_POST['post2'])){
     if($conn->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc)";
+        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc,status) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc,'inactive')";
         if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 
         }else{
@@ -61,7 +62,7 @@ if(isset($_POST['post3'])){
     if($conn->connect_error){
         die("Connection Error");
     }else{
-        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc)";
+        $sql="insert into login(fname,mname,lname,address,email,mobile,gender,uname,pwd,acc,status) values('$fname','$mname','$lname','$address','$email','$mobile','$gender','$uname','$pwd',$acc,'inactive')";
        echo "<script>alert(\"$sql\");</script>";
         if($conn->query($sql) === TRUE){  
             header("Location: index.php"); 

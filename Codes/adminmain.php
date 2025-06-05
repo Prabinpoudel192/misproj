@@ -59,9 +59,8 @@ $uname=$_SESSION['uname'];
                     <div class="filter-icon"></div>
                     
                 </div>
-                <div class="cart-container" onclick="toggleCart(); cHideUnhide();">
-                    <div class="cart-icon"></div>
-                    <div class="cart-count" id="cartCount">0</div>
+                <div class="cart-container" onclick="adminpage()">
+                    <div class="admin-icon"></div>
                 </div>
                 <!-- This portion is for upload -->
                 <div class="upload-container" onclick="upload()">

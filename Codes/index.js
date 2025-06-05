@@ -1022,3 +1022,78 @@ function validation1(){
     return true;
 }
     
+function adminpage(){
+window.location.href="adminpanel.php";
+}
+function adminHome(){
+    window.location.href="adminmain.php";
+}
+
+function udisplay() {
+  $.ajax({
+    url: "udisplay.php",
+    method: "POST",    
+    dataType: "json",
+    success: (res) => {
+      res.forEach((element,i) => {
+        const sections = document.querySelectorAll(".section")
+  sections.forEach((section) => {
+    section.classList.remove("active")
+  })
+
+  // Remove active class from all buttons
+  const buttons = document.querySelectorAll(".nav-btn")
+  buttons.forEach((button) => {
+    button.classList.remove("active")
+  })
+
+  // Show selected section
+  document.getElementById('credentials').classList.add("active")
+
+  // Add active class to clicked button
+  target.classList.add("active")
+      });
+    },
+    error: (jqXHR, textStatus, errorThrown) => {
+      console.error("AJAX error:", textStatus, errorThrown);
+      alert("AJAX failed: " + textStatus);
+    }
+  });
+}
+
+function userdel(uname){
+    let usernam=uname;
+    
+   $.ajax({
+        url: 'userdelete.php',
+        method: 'POST',
+        data: {
+            uname: usernam,
+        },
+        success: function () {
+            window.location.reload();
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
+}           
+      function sapprove(uname){
+        let usernam=uname;
+    
+   $.ajax({
+        url: 'sapprove.php',
+        method: 'POST',
+        data: {
+            uname: usernam,
+        },
+        success: function () {
+            window.location.reload();
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
+}          
+      
+      
