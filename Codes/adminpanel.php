@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-
+    <script defer src="../jquery/jquery.js"></script>
+    <script defer src="index.js"></script>
     <title>BuyMart Admin Panel</title>
     <style>
         * {
@@ -30,16 +31,19 @@
         
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-            <button class="nav-btn home active" onclick="adminHome()">
+            <button class="nav-btn home active" onclick="adminHome(this)">
                 🏠 Home
             </button>
-            <button class="nav-btn credentials" onclick="udisplay()">
+            <button class="nav-btn credentials" onclick="udisplay(this)">
                 👥 Login Credentials
             </button>
-            <button class="nav-btn stocks" onclick="udisplay()">
+            <button class="nav-btn stocks" onclick="udisplay1(this)">
                 📦 Stocks Remaining
             </button>
-            <button class="nav-btn sales" onclick="showSection('sales',event); udisplay();">
+            <button class="nav-btn ml" onclick="udisplay2(this)">
+                📦 Most Liked
+            </button>
+            <button class="nav-btn sales" onclick="udisplay2(this)">
                 💰 Sales
             </button>
         </div>
@@ -157,30 +161,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>P001</td>
-                        <td>Laptop</td>
-                        <td>45</td>
-                        <td><span class="status active-status">In Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>P002</td>
-                        <td>Smartphone</td>
-                        <td>12</td>
-                        <td><span class="status low">Low Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>P003</td>
-                        <td>Headphones</td>
-                        <td>0</td>
-                        <td><span class="status out">Out of Stock</span></td>
-                    </tr>
-                    <tr>
-                        <td>P004</td>
-                        <td>Tablet</td>
-                        <td>23</td>
-                        <td><span class="status active-status">In Stock</span></td>
-                    </tr>
+                    <?php
+                    include "db.php";
+                     $str="";
+                    $query="select *from uploads";
+                    $res=$conn->query($query);
+                    while($row=$res->fetch_assoc()){
+                    $qty=$row['stock'];
+                   $str .= "<tr>
+                    <td>{$row['id']}</td>
+                    <td>{$row['pname']}</td>
+                    <td>$qty</td>";
+                    if($qty>10){
+                        $str.="<td><span class='status active-status'>In Stock</span></td></tr>";
+                    }if($qty>0 && $qty<=10){
+                        $str.="<td><span class='status low'>Low Stock</span></td></tr>";
+                    }if($qty==0){
+                        $str.="<td><span class='status out'>Out of Stock</span></td></tr>";
+                    }}
+                    echo $str;
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -196,42 +196,49 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Product</th>
-                        <th>Date</th>
-                        <th>Amount</th>
+                        <th>Product Id</th>
+                        <th>Product Name</td>
+                        <th>Total Stars</th>
+                        <th>Average Rating</th>
+                        <th>No of Ratings</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ORD-001</td>
-                        <td>Laptop</td>
-                        <td>2025-06-05</td>
-                        <td>$1,200.00</td>
-                    </tr>
-                    <tr>
-                        <td>ORD-002</td>
-                        <td>Smartphone</td>
-                        <td>2025-06-04</td>
-                        <td>$800.00</td>
-                    </tr>
-                    <tr>
-                        <td>ORD-003</td>
-                        <td>Headphones</td>
-                        <td>2025-06-04</td>
-                        <td>$150.00</td>
-                    </tr>
-                    <tr>
-                        <td>ORD-004</td>
-                        <td>Tablet</td>
-                        <td>2025-06-03</td>
-                        <td>$350.00</td>
-                    </tr>
+                    <?php
+                    include "db.php";
+                     $str="";
+                 $query="SELECT 
+    pr.pid,
+    u.pname,
+    COUNT(*) AS total_ratings,
+    SUM(pr.cstar) AS total_stars,
+    ROUND(AVG(pr.cstar), 2) AS average_rating
+FROM 
+    rating pr
+JOIN 
+    uploads u ON pr.pid = u.id
+GROUP BY 
+    pr.pid, u.pname
+ORDER BY
+total_stars desc";
+
+                    $res=$conn->query($query);
+                    while($row=$res->fetch_assoc()){
+                    $qty=$row['stock'];
+                   $str .= "<tr>
+                    <td>{$row['pid']}</td>
+                    <td>{$row['pname']}</td>
+                    <td>{$row['total_stars']}</td>
+                    <td>{$row['average_rating']}</td>
+                    <td>{$row['total_ratings']}</td></tr>";
+                    
+                    }
+                    echo $str;
+                    ?>
                 </tbody>
             </table>
         </div>
+
     </div>
-    <script defer src="../jquery/jquery.js"></script>
-    <script defer src="index.js"></script>
 </body>
 </html>

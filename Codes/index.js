@@ -1028,14 +1028,12 @@ window.location.href="adminpanel.php";
 function adminHome(){
     window.location.href="adminmain.php";
 }
+function mofo(){
+    alert('i fucking reached here');
+}
 
-function udisplay() {
-  $.ajax({
-    url: "udisplay.php",
-    method: "POST",    
-    dataType: "json",
-    success: (res) => {
-      res.forEach((element,i) => {
+function udisplay(target) {
+  
         const sections = document.querySelectorAll(".section")
   sections.forEach((section) => {
     section.classList.remove("active")
@@ -1052,13 +1050,47 @@ function udisplay() {
 
   // Add active class to clicked button
   target.classList.add("active")
-      });
-    },
-    error: (jqXHR, textStatus, errorThrown) => {
-      console.error("AJAX error:", textStatus, errorThrown);
-      alert("AJAX failed: " + textStatus);
-    }
-  });
+   
+}
+function udisplay1(target) {
+  
+        const sections = document.querySelectorAll(".section")
+  sections.forEach((section) => {
+    section.classList.remove("active")
+  })
+
+  // Remove active class from all buttons
+  const buttons = document.querySelectorAll(".nav-btn")
+  buttons.forEach((button) => {
+    button.classList.remove("active")
+  })
+
+  // Show selected section
+  document.getElementById('stocks').classList.add("active")
+
+  // Add active class to clicked button
+  target.classList.add("active")
+   
+}
+function udisplay2(target) {
+  
+        const sections = document.querySelectorAll(".section")
+  sections.forEach((section) => {
+    section.classList.remove("active")
+  })
+
+  // Remove active class from all buttons
+  const buttons = document.querySelectorAll(".nav-btn")
+  buttons.forEach((button) => {
+    button.classList.remove("active")
+  })
+
+  // Show selected section
+  document.getElementById('sales').classList.add("active")
+
+  // Add active class to clicked button
+  target.classList.add("active")
+   
 }
 
 function userdel(uname){

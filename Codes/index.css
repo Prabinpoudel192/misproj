@@ -1036,6 +1036,9 @@
         .nav-btn.sales {
             background: linear-gradient(45deg, #4CAF50, #388E3C);
         }
+        .nav-btn.ml{
+            background: black;
+        }
         
         .section {
             background: rgba(255,255,255,0.95);
