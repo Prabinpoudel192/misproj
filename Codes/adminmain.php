@@ -63,7 +63,7 @@ $uname=$_SESSION['uname'];
                     <div class="admin-icon"></div>
                 </div>
                 <!-- This portion is for upload -->
-                <div class="upload-container" onclick="upload()">
+                <div class="upload-container" onclick="upload('admin')">
                     <div class="upload-icon"></div>
                     
                 </div>
@@ -134,6 +134,7 @@ $uname=$_SESSION['uname'];
     </div>
     <script>
     const uname = <?php echo json_encode($uname); ?>;
+    const pageType=1;
 </script>
     <script defer src="../jquery/jquery.js"></script>
     <script defer src="index.js"></script>

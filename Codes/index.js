@@ -3,6 +3,7 @@ let cart = [];
 let filteredProducts = [];
 let str;
 let tc = 1;
+datafetch();
 toggleCart();
 
 function login() {
@@ -31,6 +32,9 @@ function admin() {
 }
 function home() {
     window.location.href = "prabin.php";
+}
+function home1(){
+    window.location.href="adminmain.php";
 }
 function esewa(pid) {
     window.location.href = "esewa.php?pid=" + pid;
@@ -142,8 +146,12 @@ function fa() {
 
 //search andchor logic ends here
 
-function upload() {
+function upload(type) {
+    if(type==="home"){
     window.location.href = "upload.php";
+    }if(type==="admin"){
+        window.location.href = "upload1.php"; 
+    }
 }
 
 
@@ -189,7 +197,6 @@ function pra(data) {
 
 }
 const products = [];
-datafetch();
 function datafetch() {
     $(document).ready(function () {
         $.ajax({
@@ -347,8 +354,8 @@ function createProductCard(product) {
     card.className = 'product-card';
 
     const stockStatus = getStockStatus(product.stock);
+    if(pageType==2){  
     card.innerHTML = `
-   
                 <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:85%; height:100%;"></div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
@@ -374,8 +381,52 @@ function createProductCard(product) {
                              </div>
                 </div>
             `;
+    }if(pageType==1){
+                   card.innerHTML = `
+                <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width:85%; height:100%;"></div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                         <div class="product-footer">
+                        <span class="product-price" style="margin-left:80px;">Rs.${product.price}</span>
+                        <div style="margin-left:30px; paddin:30px;">
+                        <button class="add-to-cart1" onclick="adminDel(${product.id})">
+                            Delete
+                        </button>
+                       </div>
+                    </div>
+                    <div class="stock-status ${stockStatus.class}">${stockStatus.text}</div>
+                    <div class="stars" >
+                    <h6>Please Rate this product<br></h6>
+                        <span class="star" id="star1${product.id}"   onclick="rating('${product.id}',1,'${uname}')">&#9733;</span>
+                        <span class="star" id="star2${product.id}"   onclick="rating('${product.id}',2,'${uname}')">&#9733;</span>
+                        <span class="star" id="star3${product.id}"   onclick="rating('${product.id}',3,'${uname}')">&#9733;</span>
+                        <span class="star" id="star4${product.id}"   onclick="rating('${product.id}',4,'${uname}')">&#9733;</span>
+                        <span class="star" id="star5${product.id}"   onclick="rating('${product.id}',5,'${uname}')">&#9733;</span>
+                             </div>
+                </div>
+            `;
+    }
 
     return card;
+}
+function adminDel(dat){
+    let productId=dat;
+    $.ajax({
+        url: 'admindel.php',
+        method: 'POST',
+        data: {
+            pid: productId,
+        },
+        dataType: 'json',
+        success: function (res) {
+            alert(res);
+            window.location.href='adminmain.php';
+        },
+        error: function () {
+            alert('Error fetching product data.');
+        }
+    });
 }
 
 // Get stock status
@@ -393,19 +444,20 @@ function updateCartCount() {
     document.getElementById('cartCount').textContent = cart.length;
 }
 //Recommendation div logic starts here
-function recommendation(){
-       $.ajax({
+function recommendation() {
+    $.ajax({
         url: 'recommendation.php',
         method: 'POST',
         dataType: 'json',
         success: function (res) {
-          const recommendationDiv = document.getElementsByClassName("recommendation-div")[0];
-            
+            const recommendationDiv = document.getElementsByClassName("recommendation-div")[0];
+
             if (res.length > 0) {
                 recommendationDiv.innerHTML = '';
+
                 const recommendationContainer = document.createElement('div');
                 recommendationContainer.className = 'recommendation-container';
-               recommendationContainer.innerHTML = `
+                recommendationContainer.innerHTML = `
                     <div style="
                         display: flex; 
                         justify-content: space-between; 
@@ -432,19 +484,23 @@ function recommendation(){
                         </div>
                     </div>
                 `;
+
                 const recommendationGrid = document.createElement('div');
-                recommendationGrid.className = 'recommendation-grid';
-                recommendationGrid.style.display = 'grid';
-                recommendationGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
-                recommendationGrid.style.gap = '20px';
+                recommendationGrid.style.display = 'flex';
+                recommendationGrid.style.justifyContent = 'space-between';
+                recommendationGrid.style.gap = '10px';
                 recommendationGrid.style.padding = '20px';
-                res.forEach(product => {
+
+                res.slice(0, 3).forEach(product => {
                     const productCard = createProductCard(product);
+                    productCard.style.flex = '0 0 32%'; // Make each card occupy 32% of container
                     recommendationGrid.appendChild(productCard);
                 });
+
                 recommendationContainer.appendChild(recommendationGrid);
                 recommendationDiv.appendChild(recommendationContainer);
                 recommendationDiv.style.display = "flex";
+
                 setTimeout(() => {
                     starrating();
                 }, 100);
@@ -454,8 +510,8 @@ function recommendation(){
             alert('Error fetching product data.');
         }
     });
-
 }
+
 
 //Recommendation div logic ends here
 // Toggle cart (placeholder function)
