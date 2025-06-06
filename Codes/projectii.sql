@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 20, 2025 at 07:49 AM
+-- Generation Time: Jun 06, 2025 at 04:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,28 +24,78 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `qty`) VALUES
+(43, 1),
+(46, 1),
+(53, 1),
+(58, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
   `fname` varchar(40) DEFAULT NULL,
+  `mname` varchar(15) DEFAULT NULL,
   `lname` varchar(40) DEFAULT NULL,
+  `address` varchar(35) DEFAULT NULL,
+  `mobile` varchar(15) DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
+  `email` varchar(35) DEFAULT NULL,
   `uname` varchar(40) DEFAULT NULL,
   `pwd` varchar(40) DEFAULT NULL,
-  `acc` int(11) DEFAULT NULL
+  `acc` int(11) DEFAULT NULL,
+  `status` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`fname`, `lname`, `uname`, `pwd`, `acc`) VALUES
-('Prabin', 'Poudel', 'prabin123', '123456', 2),
-('Kushal', 'Dhakal', 'kushal123', '123456', 1),
-('rupa', 'bastakoti', 'rupa123', '123456', 2),
-('Bibek', 'Adhikari', 'Bibek123', '123456', 2),
-('', '', '', '', 1),
-('Chaman', 'Dallakoti', 'chaman123', '123456', 1);
+INSERT INTO `login` (`fname`, `mname`, `lname`, `address`, `mobile`, `gender`, `email`, `uname`, `pwd`, `acc`, `status`) VALUES
+('pupa', 'kumari', 'ghalan', 'bharatpur', '9875423456', 'f', 'rupa@gmail.com', 'pupa123', '123456', 1, 'active'),
+('jason', '', 'Statham', 'kathmandu-01 bagmati,nepal', '9856435423', 'm', 'jason@gmail.com', 'jason123', '123456', 2, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `pid` int(11) DEFAULT NULL,
+  `uid` varchar(60) DEFAULT NULL,
+  `cstar` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`pid`, `uid`, `cstar`) VALUES
+(47, 'jason123', 3),
+(48, 'jason123', 3),
+(52, 'jason123', 3),
+(56, 'jason123', 3),
+(60, 'jason123', 3),
+(62, 'jason123', 5),
+(58, 'jason123', 5),
+(54, 'jason123', 5),
+(55, 'jason123', 5);
 
 -- --------------------------------------------------------
 
@@ -61,21 +111,41 @@ CREATE TABLE `uploads` (
   `tax` varchar(10) DEFAULT NULL,
   `total` varchar(10) DEFAULT NULL,
   `pdes` varchar(1000) DEFAULT NULL,
-  `fname` varchar(200) DEFAULT NULL
+  `fname` varchar(200) DEFAULT NULL,
+  `category` varchar(50) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `uploads`
 --
 
-INSERT INTO `uploads` (`id`, `pname`, `pprice`, `serchar`, `tax`, `total`, `pdes`, `fname`) VALUES
-(19, 'Bla Bla Bla', 1234000, 100, '160420', '1394520', 'This is bla bla bla bla bla', '../files/QN1.png'),
-(20, 'no name', 9890000, 234544, '1285700', '11410244', 'sdfgjlskdfjgls;dfjgs;ldfjg;sldfjgl;sdfjg', '../files/wallpaper.jpg'),
-(21, 'Banana', 1200, 32, '156', '1388', 'This is the best buy bananna.', '../files/wallpaper.jpg');
+INSERT INTO `uploads` (`id`, `pname`, `pprice`, `serchar`, `tax`, `total`, `pdes`, `fname`, `category`, `stock`) VALUES
+(47, 'Remote Control Car', 450, 50, '58.5', '558.5', 'This is remote control car for kids above 5yrs with 5 cell capacity with operating hours of approx 1000hrs per batch of cell.', '../files/remotcontrolcar.jpeg', 'kids', 100),
+(48, 'Office Supply', 2300, 20, '299', '2619', 'This item includes kit of multiple stationary items per batch which meets all the office requirement all at once.', '../files/officesupply.jpeg', 'books', 100),
+(49, 'Horlicks', 200, 10, '26', '236', 'This product is enriched with vitamin A,B and C with iron included which keeps kids healty.', '../files/horlicks.jpeg', 'food', 1200),
+(50, 'Hookha', 1400, 100, '182', '1682', 'This hookha is provided with three best flavour of the customer choice. ', '../files/hookha.jpg', 'luxury', 105),
+(52, 'GoPro', 5600, 200, '728', '6528', 'This headphone has features of 4k recording and can be upgraded to 8k with slightest change costing less than rs.500.', '../files/gopro.jpeg', 'electronics', 24),
+(53, 'Dabur Glucose', 230, 10, '29.9', '269.9', 'New enerzising glucose.', '../files/glucose.jpeg', 'food', 80),
+(54, 'Home Refregerator', 34000, 2000, '4420', '40420', 'This refregerator is for home appliance and has capacity of 80 ltr.', '../files/fridge.jpeg', 'electronics', 10),
+(55, 'Five Point someone', 340, 30, '44.2', '414.2', 'This book is written by chetan bhagat and has higest selling record in nepal.', '../files/fivepointsomeone.jpeg', 'books', 100),
+(56, 'Drone', 3400, 30, '442', '3872', 'It has capacity to remain in the air for more than an hour in single full charge.', '../files/drone.jpeg', 'electronics', 20),
+(58, 'Cotton Candy', 20, 5, '2.6', '27.6', 'Sugar free cotton candy.', '../files/cottoncandy.jpg', 'kids', 1000),
+(59, 'Samsung A71', 45000, 100, '5850', '50950', 'It has features of 4g,6gb ram,500gb ssd and 8 quad processor with the speed of 2.85ghz.', '../files/cellphone.jpeg', 'electronics', 56),
+(60, 'Cauli Flower', 20, 5, '2.6', '27.6', 'Fresh yield cauliflower grown without the use of fertilizer.', '../files/cauliflower.jpeg', 'food', 100),
+(61, 'Egg Fruit', 20, 3, '2.6', '25.6', 'Freshly yield egg fruit grown without the use of chemical fertilizer.', '../files/brinjal.jpeg', 'food', 100),
+(62, 'Barbie Doll', 200, 25, '26', '251', 'The low cost beautiful barbie doll for your kids.', '../files/barbiedoll.jpeg', 'kids', 1000),
+(64, 'Ray Ban Goggle', 350, 30, '45.5', '425.5', 'This goggle is polarized which will save your eyes from the hazardious ray from the sun.', '../files/goggle.jpg', 'luxury', 20);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD KEY `fk_rating_pid` (`pid`);
 
 --
 -- Indexes for table `uploads`
@@ -91,7 +161,17 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `fk_rating_pid` FOREIGN KEY (`pid`) REFERENCES `uploads` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
